@@ -348,4 +348,3 @@ function initHeroSlider() {
 
     let sliderInterval = setInterval(nextSlide, 4000);
 }
-

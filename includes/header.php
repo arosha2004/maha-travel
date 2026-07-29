@@ -16,6 +16,8 @@ if (!isset($current_page)) {
     <meta name="keywords" content="Sri Lanka Tours, Travel Sri Lanka, Sigiriya, Kandy, Ella Train, Yala Safari, Mirissa Whale Watching, Luxury Travel Sri Lanka">
     <meta name="author" content="Maha Lanka Tours">
     <title><?php echo htmlspecialchars($page_title); ?></title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=64&q=80">
 </head>

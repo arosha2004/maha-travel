@@ -115,24 +115,38 @@ include_once __DIR__ . '/includes/header.php';
             <div>
                 <span class="section-tag">Iconic Wonders</span>
                 <h2 class="section-title">Must-Visit <span>Sri Lankan</span> Destinations</h2>
-                <p class="section-desc">From misty tea hills to ancient rock fortresses and turquoise coastal bays, discover Sri Lanka’s world-renowned landmarks.</p>
+                <p class="section-desc">From misty tea hills to ancient rock fortresses and turquoise coastal bays, discover Sri Lanka's world-renowned landmarks.</p>
             </div>
-            <a href="destinations.php" class="btn btn-outline" style="border-color: var(--primary); color: var(--primary);">View All Destinations →</a>
+            <a href="destinations.php" class="btn btn-outline dest-view-all-btn">View All Destinations →</a>
         </div>
 
-        <div class="destinations-grid">
-            <?php foreach (array_slice($destinations, 0, 6) as $dest): ?>
-                <div class="destination-card">
-                    <img src="<?php echo htmlspecialchars($dest['image']); ?>" alt="<?php echo htmlspecialchars($dest['name']); ?>" loading="lazy">
-                    <div class="destination-overlay">
-                        <div class="destination-badge"><?php echo htmlspecialchars($dest['category']); ?></div>
-                        <div class="destination-content">
-                            <span class="dest-region">📍 <?php echo htmlspecialchars($dest['region']); ?></span>
-                            <h3 class="dest-title"><?php echo htmlspecialchars($dest['name']); ?></h3>
-                            <p class="dest-desc"><?php echo htmlspecialchars($dest['desc']); ?></p>
-                        </div>
-                    </div>
+        <!-- Destination Cards Grid -->
+        <div class="dest-cards-grid">
+            <?php
+            $dest_icons = ['🏔️','🌊','🏯','🌿','🦁','🌅'];
+            $dest_tags  = ['Highlands','Coastal','Heritage','Nature','Wildlife','Scenic'];
+            foreach (array_slice($destinations, 0, 6) as $i => $dest):
+                $icon = $dest_icons[$i % count($dest_icons)];
+                $tag  = $dest_tags[$i % count($dest_tags)];
+            ?>
+            <div class="dest-card <?php echo ($i === 0) ? 'dest-card--featured' : ''; ?>">
+                <div class="dest-card__img-wrap">
+                    <img src="<?php echo htmlspecialchars($dest['image']); ?>"
+                         alt="<?php echo htmlspecialchars($dest['name']); ?>"
+                         loading="lazy">
+                    <div class="dest-card__overlay"></div>
                 </div>
+                <div class="dest-card__badge"><?php echo $icon; ?> <?php echo $tag; ?></div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title"><?php echo htmlspecialchars($dest['name']); ?></h3>
+                    <div class="dest-card__meta">
+                        <span class="dest-card__rating">★ 4.9</span>
+                        <span class="dest-card__sep">·</span>
+                        <span class="dest-card__count">22 Tours</span>
+                    </div>
+                    <a href="destinations.php" class="dest-card__cta">Explore <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </div>
