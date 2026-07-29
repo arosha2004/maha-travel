@@ -113,10 +113,10 @@ include_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header">
             <div>
+                <span class="section-tag">Iconic Wonders</span>
                 <h2 class="section-title">Must-Visit <span>Sri Lankan</span> Destinations</h2>
                 <p class="section-desc">From misty tea hills to ancient rock fortresses and turquoise coastal bays, discover Sri Lanka's world-renowned landmarks.</p>
             </div>
-            <a href="destinations.php" class="btn btn-outline dest-view-all-btn">View All Destinations →</a>
         </div>
 
         <!-- Destination Cards Grid -->
@@ -272,8 +272,9 @@ include_once __DIR__ . '/includes/header.php';
 <!-- Testimonials Section -->
 <section class="testimonials-section">
     <div class="container">
-        <div class="section-header" style="text-align: center; justify-content: center; flex-direction: column; align-items: center; margin-bottom: 20px;">
-            <span class="section-tag" style="background: transparent; letter-spacing: 2px; color: #888; font-size: 0.75rem;">HEAR FROM THE DECISION MAKERS THEMSELVES</span>
+        <div class="section-header" style="text-align: center; justify-content: center; flex-direction: column; align-items: center; margin-bottom: 30px;">
+            <span class="section-tag">Testimonials</span>
+            <h2 class="section-title">Hear From Our <span>Travelers</span></h2>
         </div>
         
         <div class="testimonials-slider-wrap">
