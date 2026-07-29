@@ -4,27 +4,33 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.php" class="brand-logo">
-                        <div class="logo-icon">M</div>
-                        <div class="logo-text">
-                            <span class="logo-title">MAHA LANKA</span>
-                            <span class="logo-tagline">Tours & Indulgence</span>
+                <div class="footer-col" style="padding-right: 20px;">
+                    <a href="index.php" class="brand-logo" style="margin-bottom: 30px; display: inline-block;">
+                        <div class="logo-text" style="font-family: var(--font-body); font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: 1px;">
+                            MAHA LANKA
                         </div>
                     </a>
-                    <p class="footer-text">
-                        Sri Lanka’s premier luxury & authentic tour agency. Custom tailor-made private tours with 5-star hospitality, local chauffeur guides, and 100% carbon-neutral travels across the resplendent island.
+                    <p class="footer-text" style="color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px;">
+                        Sri Lanka’s premier luxury & authentic tour agency. Custom tailor-made private tours with 5-star hospitality.
                     </p>
-                    <div style="display: flex; gap: 12px;">
-                        <span style="background: rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">⭐ 4.9/5 Rating (500+ Reviews)</span>
-                        <span style="background: rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">🌱 Carbon Neutral</span>
-                    </div>
+                    <p class="footer-text" style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0;">
+                        📞 +94 11 234 5678
+                    </p>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
+                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #fff;">Top Experiences</h4>
                     <ul class="footer-links">
-                        <li><a href="index.php">Home Showcase</a></li>
+                        <li><a href="tours.php">Sigiriya & Cultural Triangle</a></li>
+                        <li><a href="tours.php">Ella Hill Country Train</a></li>
+                        <li><a href="tours.php">Yala Wildlife Safaris</a></li>
+                        <li><a href="tours.php">Mirissa Whale Expedition</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #fff;">Quick Links</h4>
+                    <ul class="footer-links">
                         <li><a href="tours.php">Curated Packages</a></li>
                         <li><a href="destinations.php">Destination Guide</a></li>
                         <li><a href="about.php">Our Story & Team</a></li>
@@ -33,33 +39,21 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4>Top Experiences</h4>
+                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #fff;">Stay In Touch</h4>
                     <ul class="footer-links">
-                        <li><a href="tours.php">Sigiriya & Cultural Triangle</a></li>
-                        <li><a href="tours.php">Ella Hill Country Train</a></li>
-                        <li><a href="tours.php">Yala Wildlife Safaris</a></li>
-                        <li><a href="tours.php">Mirissa Whale Expedition</a></li>
-                        <li><a href="tours.php">Luxury Honeymoon Villas</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">TripAdvisor</a></li>
                     </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Contact Concierge</h4>
-                    <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 12px;">
-                        📍 45 Galle Road, Colombo 03, Sri Lanka<br>
-                        📞 +94 11 234 5678 / +94 77 123 4567<br>
-                        ✉️ concierge@mahalankatours.com
-                    </p>
-                    <button class="btn btn-primary btn-plan-trip" style="width: 100%; margin-top: 10px;">Request Callback</button>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <div>© <?php echo date('Y'); ?> Maha Lanka Tours. All Rights Reserved.</div>
-                <div style="display: flex; gap: 20px;">
-                    <a href="#" style="color: inherit;">Privacy Policy</a>
-                    <a href="#" style="color: inherit;">Terms of Service</a>
-                    <a href="#" style="color: inherit;">Sustainability Commitment</a>
+                <div style="color: rgba(255,255,255,0.5);">Copyright © <?php echo date('Y'); ?> Maha Lanka Tours. All rights reserved.</div>
+                <div style="display: flex; gap: 30px; color: rgba(255,255,255,0.5);">
+                    <a href="#" style="color: inherit;">Privacy</a>
+                    <a href="#" style="color: inherit;">Terms</a>
                 </div>
             </div>
         </div>

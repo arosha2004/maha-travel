@@ -1119,7 +1119,7 @@ img {
 
 /* Footer Styling */
 .site-footer {
-    background: var(--dark);
+    background: #15101c;
     color: #fff;
     padding-top: 80px;
     padding-bottom: 40px;
@@ -1127,7 +1127,7 @@ img {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr repeat(3, 1fr);
+    grid-template-columns: 2fr 1.2fr 1.2fr 1.2fr;
     gap: 48px;
     margin-bottom: 60px;
 }
