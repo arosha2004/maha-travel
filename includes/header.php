@@ -40,7 +40,7 @@ if (!isset($current_page)) {
 
                 <div class="header-actions">
                     <button class="btn btn-glass" style="background: transparent; border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 10px 24px; color: #fff; font-weight: 500;">Schedule now</button>
-                    <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+                    <button class="mobile-toggle" aria-label="Toggle navigation"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
                 </div>
             </div>
         </div>

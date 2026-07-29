@@ -123,7 +123,14 @@ include_once __DIR__ . '/includes/header.php';
         <!-- Destination Cards Grid -->
         <div class="dest-cards-grid">
             <?php
-            $dest_icons = ['🏔️','🌊','🏯','🌿','🦁','🌅'];
+            $dest_icons = [
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>',
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>',
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7 12 2"/></svg>',
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A60.4 60.4 0 0 1 2 2a60.4 60.4 0 0 1 18 9 60.4 60.4 0 0 1-9 9Z"/><path d="M2 2l18 18"/></svg>',
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>'
+            ];
             $dest_tags  = ['Highlands','Coastal','Heritage','Nature','Wildlife','Scenic'];
             foreach (array_slice($destinations, 0, 6) as $i => $dest):
                 $icon = $dest_icons[$i % count($dest_icons)];
@@ -165,12 +172,12 @@ include_once __DIR__ . '/includes/header.php';
 
         <!-- Filter Tabs -->
         <div class="filter-tabs">
-            <button class="tab-btn active" data-category="all">✨ All Packages</button>
-            <button class="tab-btn" data-category="cultural">🏛️ Cultural Heritage</button>
-            <button class="tab-btn" data-category="adventure">🌿 Adventure & Nature</button>
-            <button class="tab-btn" data-category="beach">🏖️ Beach & Ocean</button>
-            <button class="tab-btn" data-category="wildlife">🐆 Wildlife Safari</button>
-            <button class="tab-btn" data-category="luxury">💍 Luxury & Romance</button>
+            <button class="tab-btn active" data-category="all"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg> All Packages</button>
+            <button class="tab-btn" data-category="cultural"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7 12 2"/></svg> Cultural Heritage</button>
+            <button class="tab-btn" data-category="adventure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg> Adventure & Nature</button>
+            <button class="tab-btn" data-category="beach"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Beach & Ocean</button>
+            <button class="tab-btn" data-category="wildlife"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Wildlife Safari</button>
+            <button class="tab-btn" data-category="luxury"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M11 3 8 9l4 12 4-12-3-6"/><path d="M2 9h20"/></svg> Luxury & Romance</button>
         </div>
 
         <!-- Coverflow Slider — Centered within container -->
@@ -190,7 +197,7 @@ include_once __DIR__ . '/includes/header.php';
                                 </div>
                                 <div class="tour-cf-body">
                                     <div class="tour-cf-meta">
-                                        <span class="tour-cf-duration">⏱️ <?php echo htmlspecialchars($tour['duration']); ?></span>
+                                        <span class="tour-cf-duration"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><?php echo htmlspecialchars($tour['duration']); ?></span>
                                         <span class="tour-cf-rating">★ <?php echo htmlspecialchars($tour['rating']); ?> <em>(<?php echo htmlspecialchars($tour['reviews_count']); ?>)</em></span>
                                     </div>
                                     <h3 class="tour-cf-title"><?php echo htmlspecialchars($tour['title']); ?></h3>
@@ -217,54 +224,6 @@ include_once __DIR__ . '/includes/header.php';
     </div>
 </section>
 
-<!-- Interactive Itinerary Calculator Tool -->
-<section class="estimator-section">
-    <div class="container">
-        <div class="section-header" style="color: #fff; margin-bottom: 32px;">
-            <div>
-                <span class="section-tag" style="background: rgba(255,255,255,0.15); color: var(--accent-light);">Live Cost Estimator</span>
-                <h2 class="section-title" style="color: #fff;">Interactive <span>Trip Quote</span> Calculator</h2>
-                <p class="section-desc" style="color: rgba(255,255,255,0.8);">Select your travel duration, group size, and preferred accommodation standard for an instant live estimate.</p>
-            </div>
-        </div>
-
-        <div class="estimator-box">
-            <div class="estimator-controls">
-                <div class="control-group">
-                    <label>Duration (Days)</label>
-                    <div class="range-slider-wrapper">
-                        <input type="range" id="est-days" min="3" max="14" value="7">
-                        <span class="slider-val" id="val-days">7 Days</span>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label>Number of Travelers</label>
-                    <div class="range-slider-wrapper">
-                        <input type="range" id="est-travelers" min="1" max="10" value="2">
-                        <span class="slider-val" id="val-travelers">2 People</span>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label>Travel & Stay Style</label>
-                    <div class="style-selector">
-                        <button class="style-btn" data-multiplier="110">Standard<br><span style="font-size:0.75rem; opacity:0.8;">3★ Hotels</span></button>
-                        <button class="style-btn active" data-multiplier="150">Premium<br><span style="font-size:0.75rem; opacity:0.8;">4★ Boutique</span></button>
-                        <button class="style-btn" data-multiplier="230">Luxury Ultra<br><span style="font-size:0.75rem; opacity:0.8;">5★ Villas</span></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="estimator-result">
-                <div class="quote-label">Estimated Total Package Quote</div>
-                <div class="quote-price" id="quote-price-val">$2,100</div>
-                <p class="quote-note">Includes 100% private AC vehicle, chauffeur guide, accommodations, breakfast, and all taxes.</p>
-                <button class="btn btn-primary btn-plan-trip" style="width: 100%; height: 50px;">Reserve This Estimate</button>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Why Choose Maha Lanka Tours -->
 <section class="why-section">
@@ -277,25 +236,33 @@ include_once __DIR__ . '/includes/header.php';
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🚘</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                </div>
                 <h3 class="feature-title">Private Luxury Vehicles</h3>
                 <p class="feature-desc">Travel in pristine air-conditioned SUVs or luxury vans with experienced, government-licensed English-speaking chauffeur guides.</p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">✨</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+                </div>
                 <h3 class="feature-title">Handpicked Boutique Stays</h3>
                 <p class="feature-desc">We personally audit every hotel, tea estate bungalow, and beachfront resort to ensure world-class standards.</p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
                 <h3 class="feature-title">24/7 Dedicated Concierge</h3>
                 <p class="feature-desc">Enjoy peace of mind with a dedicated trip manager reachable via WhatsApp/Call anytime during your stay in Sri Lanka.</p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">🌱</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A60.4 60.4 0 0 1 2 2a60.4 60.4 0 0 1 18 9 60.4 60.4 0 0 1-9 9Z"/><path d="M2 2l18 18"/></svg>
+                </div>
                 <h3 class="feature-title">100% Carbon Offset</h3>
                 <p class="feature-desc">We plant native trees in Sri Lanka's central rainforest reserves for every kilometer driven on your tour.</p>
             </div>
