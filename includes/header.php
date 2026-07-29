@@ -26,20 +26,20 @@ if (!isset($current_page)) {
     <header class="site-header">
         <div class="container">
             <div class="header-wrapper">
-                <a href="index.php" class="brand-logo" style="gap: 12px; color: #fff;">
+                <a href="index.php" class="brand-logo" style="gap: 12px;">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
                     <span style="font-size: 1.5rem; font-weight: 700; font-family: var(--font-body);">Ventures</span>
                 </a>
 
                 <nav class="nav-menu">
-                    <a href="#" class="nav-link">Destination</a>
-                    <a href="#" class="nav-link">Services</a>
-                    <a href="#" class="nav-link">Tour Packages</a>
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="destinations.php" class="nav-link <?php echo ($current_page == 'destinations') ? 'active' : ''; ?>">Destination</a>
+                    <a href="about.php" class="nav-link <?php echo ($current_page == 'about') ? 'active' : ''; ?>">Services</a>
+                    <a href="tours.php" class="nav-link <?php echo ($current_page == 'tours') ? 'active' : ''; ?>">Tour Packages</a>
+                    <a href="contact.php" class="nav-link <?php echo ($current_page == 'contact') ? 'active' : ''; ?>">Contact</a>
                 </nav>
 
                 <div class="header-actions">
-                    <button class="btn btn-glass" style="background: transparent; border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 10px 24px; color: #fff; font-weight: 500;">Schedule now</button>
+                    <a href="tours.php#packages" class="btn btn-primary" style="border-radius: 30px; padding: 10px 24px; font-weight: 600; text-decoration: none;">Book Now</a>
                     <button class="mobile-toggle" aria-label="Toggle navigation"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
                 </div>
             </div>

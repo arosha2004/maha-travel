@@ -113,7 +113,6 @@ include_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header">
             <div>
-                <span class="section-tag">Iconic Wonders</span>
                 <h2 class="section-title">Must-Visit <span>Sri Lankan</span> Destinations</h2>
                 <p class="section-desc">From misty tea hills to ancient rock fortresses and turquoise coastal bays, discover Sri Lanka's world-renowned landmarks.</p>
             </div>
@@ -229,7 +228,7 @@ include_once __DIR__ . '/includes/header.php';
 <section class="why-section">
     <div class="container">
         <div class="section-header" style="text-align: center; justify-content: center; flex-direction: column; align-items: center;">
-            <span class="section-tag">The Maha Advantage</span>
+            <span class="section-tag">The Maha Lanka   Advantage</span>
             <h2 class="section-title">Why Travel With <span>Maha Lanka</span></h2>
             <p class="section-desc">We deliver uncompromised luxury, total reliability, and authentic local immersion on every journey.</p>
         </div>
@@ -265,6 +264,75 @@ include_once __DIR__ . '/includes/header.php';
                 </div>
                 <h3 class="feature-title">100% Carbon Offset</h3>
                 <p class="feature-desc">We plant native trees in Sri Lanka's central rainforest reserves for every kilometer driven on your tour.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header" style="text-align: center; justify-content: center; flex-direction: column; align-items: center; margin-bottom: 20px;">
+            <span class="section-tag" style="background: transparent; letter-spacing: 2px; color: #888; font-size: 0.75rem;">HEAR FROM THE DECISION MAKERS THEMSELVES</span>
+        </div>
+        
+        <div class="testimonials-slider-wrap">
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="#E8EDF5"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                            </div>
+                            <h3 class="testimonial-quote">"Through Maha Lanka Tours, we were able to experience the true beauty of Sri Lanka. Their team demonstrated the qualities of empathy and compassion over and over again!"</h3>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop" alt="Author" class="author-img">
+                                <div class="author-info">
+                                    <h4 class="author-name">Abhay Ranjan, People Operations</h4>
+                                    <div class="author-company">zuddl</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="#E8EDF5"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                            </div>
+                            <h3 class="testimonial-quote">"The luxury vehicles, the handpicked boutique stays, and the 24/7 concierge made our honeymoon absolutely unforgettable. Highly recommend to anyone visiting!"</h3>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&auto=format&fit=crop" alt="Author" class="author-img">
+                                <div class="author-info">
+                                    <h4 class="author-name">Sarah Jenkins, CEO</h4>
+                                    <div class="author-company" style="font-family: var(--font-body); font-weight: 800; letter-spacing: -0.5px; color: #2E4F9E;">TechFlow</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="#E8EDF5"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                            </div>
+                            <h3 class="testimonial-quote">"A completely seamless experience from start to finish. We didn't have to worry about a single thing. The guide was incredibly knowledgeable and friendly."</h3>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop" alt="Author" class="author-img">
+                                <div class="author-info">
+                                    <h4 class="author-name">Michael Chang, Director</h4>
+                                    <div class="author-company" style="font-family: var(--font-body); font-weight: 800; letter-spacing: -0.5px; color: #2E4F9E;">Global Ventures</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation -->
+                <div class="swiper-button-prev test-prev"></div>
+                <div class="swiper-button-next test-next"></div>
+                <!-- Pagination -->
+                <div class="swiper-pagination test-dots"></div>
             </div>
         </div>
     </div>

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initModalHandlers();
     initFormSubmissions();
     initHeroSlider();
+    initTestimonialsSlider();
 });
 
 // 1. Header Sticky Effect
@@ -405,4 +406,29 @@ function initHeroSlider() {
     }
 
     let sliderInterval = setInterval(nextSlide, 4000);
+}
+
+// 8. Testimonials Slider
+function initTestimonialsSlider() {
+    const swiperEl = document.querySelector('.testimonials-swiper');
+    if (!swiperEl) return;
+
+    new Swiper('.testimonials-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.test-next',
+            prevEl: '.test-prev',
+        },
+        pagination: {
+            el: '.test-dots',
+            clickable: true,
+        },
+        autoHeight: true,
+    });
 }

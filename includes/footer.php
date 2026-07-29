@@ -6,20 +6,20 @@
             <div class="footer-grid">
                 <div class="footer-col" style="padding-right: 20px;">
                     <a href="index.php" class="brand-logo" style="margin-bottom: 30px; display: inline-block;">
-                        <div class="logo-text" style="font-family: var(--font-body); font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: 1px;">
+                        <div class="logo-text" style="font-family: var(--font-body); font-size: 2.2rem; font-weight: 800; color: #000; letter-spacing: 1px;">
                             MAHA LANKA
                         </div>
                     </a>
-                    <p class="footer-text" style="color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px;">
+                    <p class="footer-text" style="color: #222222; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px;">
                         Sri Lanka’s premier luxury & authentic tour agency. Custom tailor-made private tours with 5-star hospitality.
                     </p>
-                    <p class="footer-text" style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0; display: flex; align-items: center; gap: 8px;">
+                    <p class="footer-text" style="color: #000000; font-size: 1rem; font-weight: 700; margin-bottom: 0; display: flex; align-items: center; gap: 8px;">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +94 11 234 5678
                     </p>
                 </div>
 
                 <div class="footer-col">
-                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #fff;">Top Experiences</h4>
+                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #000;">Top Experiences</h4>
                     <ul class="footer-links">
                         <li><a href="tours.php">Sigiriya & Cultural Triangle</a></li>
                         <li><a href="tours.php">Ella Hill Country Train</a></li>
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #fff;">Quick Links</h4>
+                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #000;">Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="tours.php">Curated Packages</a></li>
                         <li><a href="destinations.php">Destination Guide</a></li>
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #fff;">Stay In Touch</h4>
+                    <h4 style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; margin-bottom: 24px; color: #000;">Stay In Touch</h4>
                     <ul class="footer-links">
                         <li><a href="#">Facebook</a></li>
                         <li><a href="#">Instagram</a></li>
@@ -50,8 +50,8 @@
             </div>
 
             <div class="footer-bottom">
-                <div style="color: rgba(255,255,255,0.5);">Copyright © <?php echo date('Y'); ?> Maha Lanka Tours. All rights reserved.</div>
-                <div style="display: flex; gap: 30px; color: rgba(255,255,255,0.5);">
+                <div style="color: #444444;">Copyright © <?php echo date('Y'); ?> Maha Lanka Tours. All rights reserved.</div>
+                <div style="display: flex; gap: 30px; color: #444444;">
                     <a href="#" style="color: inherit;">Privacy</a>
                     <a href="#" style="color: inherit;">Terms</a>
                 </div>
