@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initItineraryEstimator();
     initModalHandlers();
     initFormSubmissions();
+    initHeroSlider();
 });
 
 // 1. Header Sticky Effect
@@ -253,3 +254,98 @@ function showToast(message, type = 'success') {
         setTimeout(() => toast.remove(), 300);
     }, 4500);
 }
+
+// 7. Hero Image Cards Slider
+function initHeroSlider() {
+    const cardsContainer = document.querySelector('.hero-image-cards');
+    if (!cardsContainer) return;
+    
+    const locations = [
+        {
+            image: "https://images.unsplash.com/photo-1506905925275-2244247509f6?q=80&w=600&auto=format&fit=crop",
+            name: "Lake Gregory",
+            country: "Nuwara Eliya, Sri Lanka"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop",
+            name: "Ella Rock",
+            country: "Ella, Sri Lanka"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=600&auto=format&fit=crop",
+            name: "Sigiriya Fortress",
+            country: "Dambulla, Sri Lanka"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1578637387939-43c525550085?q=80&w=600&auto=format&fit=crop",
+            name: "Mirissa Beach",
+            country: "Mirissa, Sri Lanka"
+        }
+    ];
+
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    // Remove static cards from HTML (except the nav button which we keep)
+    const existingCards = cardsContainer.querySelectorAll('.image-card');
+    existingCards.forEach(c => c.remove());
+    
+    function createCard(loc, indexClass) {
+        const div = document.createElement('div');
+        div.className = `image-card ${indexClass}`;
+        div.innerHTML = `
+            <img src="${loc.image}" alt="${loc.name}">
+            <div class="card-location">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                    <span class="card-loc-name">${loc.name}</span>
+                    <span class="card-loc-country">${loc.country}</span>
+                </div>
+            </div>
+        `;
+        return div;
+    }
+
+    let card1 = createCard(locations[0], 'card-1');
+    let card2 = createCard(locations[1], 'card-2');
+    
+    cardsContainer.appendChild(card1);
+    cardsContainer.appendChild(card2);
+
+    function nextSlide() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        currentIndex = (currentIndex + 1) % locations.length;
+        let nextIndex = (currentIndex + 1) % locations.length;
+
+        card1.classList.remove('card-1');
+        card1.classList.add('card-out');
+        
+        card2.classList.remove('card-2');
+        card2.classList.add('card-1');
+
+        let newCard2 = createCard(locations[nextIndex], 'card-new');
+        cardsContainer.appendChild(newCard2);
+        
+        // Trigger reflow
+        void newCard2.offsetWidth;
+        
+        newCard2.classList.remove('card-new');
+        newCard2.classList.add('card-2');
+
+        const oldCard = card1;
+        setTimeout(() => {
+            if (oldCard && oldCard.parentNode) {
+                oldCard.remove();
+            }
+            isAnimating = false;
+        }, 600); 
+
+        card1 = card2;
+        card2 = newCard2;
+    }
+
+    let sliderInterval = setInterval(nextSlide, 4000);
+}
+

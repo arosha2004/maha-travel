@@ -24,24 +24,20 @@ if (!isset($current_page)) {
     <header class="site-header">
         <div class="container">
             <div class="header-wrapper">
-                <a href="index.php" class="brand-logo">
-                    <div class="logo-icon">M</div>
-                    <div class="logo-text">
-                        <span class="logo-title">MAHA LANKA</span>
-                        <span class="logo-tagline">Tours & Indulgence</span>
-                    </div>
+                <a href="index.php" class="brand-logo" style="gap: 12px; color: #fff;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+                    <span style="font-size: 1.5rem; font-weight: 700; font-family: var(--font-body);">Ventures</span>
                 </a>
 
                 <nav class="nav-menu">
-                    <a href="index.php" class="nav-link <?php echo $current_page == 'home' ? 'active' : ''; ?>">Home</a>
-                    <a href="tours.php" class="nav-link <?php echo $current_page == 'tours' ? 'active' : ''; ?>">Tour Packages</a>
-                    <a href="destinations.php" class="nav-link <?php echo $current_page == 'destinations' ? 'active' : ''; ?>">Destinations</a>
-                    <a href="about.php" class="nav-link <?php echo $current_page == 'about' ? 'active' : ''; ?>">About Us</a>
-                    <a href="contact.php" class="nav-link <?php echo $current_page == 'contact' ? 'active' : ''; ?>">Contact Us</a>
+                    <a href="#" class="nav-link">Destination</a>
+                    <a href="#" class="nav-link">Services</a>
+                    <a href="#" class="nav-link">Tour Packages</a>
+                    <a href="#" class="nav-link">Contact</a>
                 </nav>
 
                 <div class="header-actions">
-                    <button class="btn btn-primary btn-plan-trip">Plan My Trip</button>
+                    <button class="btn btn-glass" style="background: transparent; border: 1px solid rgba(255,255,255,0.4); border-radius: 30px; padding: 10px 24px; color: #fff; font-weight: 500;">Schedule now</button>
                     <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
                 </div>
             </div>

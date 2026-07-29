@@ -11,57 +11,75 @@ include_once __DIR__ . '/includes/header.php';
 
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-badge">✨ Voted Sri Lanka’s Top Boutique Tour Operator 2026</div>
-            <h1 class="hero-title">Experience the <span>Resplendent Island</span> in Unmatched Luxury</h1>
-            <p class="hero-subtitle">Custom tailor-made itineraries, private 5-star chauffeur guides, authentic local experiences, and 100% carbon-neutral travels across Sri Lanka.</p>
+    <div class="container hero-container">
+        <!-- Left Side -->
+        <div class="hero-content-left">
+            <div class="hero-location-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Sri Lanka</span>
+            </div>
             
-            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                <a href="#packages" class="btn btn-primary">Explore Packages</a>
-                <button class="btn btn-outline btn-plan-trip">Build Custom Trip</button>
+            <h1 class="hero-title">The Journey Beyond<br>Your Imaginary</h1>
+            
+            <p class="hero-subtitle">Discover thousands of beautiful places around the world with wonderful experiences you can imagine.</p>
+            
+            <div class="hero-buttons">
+                <a href="#packages" class="btn btn-explore">Explore Now</a>
+                <button class="btn-play">
+                    <span class="play-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </span>
+                    <span class="play-text">Play the video</span>
+                </button>
+            </div>
+            
+            <div class="hero-info-cards">
+                <div class="info-card">
+                    <span class="info-title">Excellence</span>
+                    <p class="info-desc">Striving for exceptional quality in every aspect of our service.</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-title">Sustainable</span>
+                    <p class="info-desc">Promoting responsible travel practices for a greener future.</p>
+                </div>
             </div>
         </div>
 
-        <!-- Floating Search Widget -->
-        <div class="search-widget">
-            <div class="search-field">
-                <label>Destination</label>
-                <select name="destination">
-                    <option value="">All Regions</option>
-                    <option value="sigiriya">Sigiriya & Cultural Triangle</option>
-                    <option value="ella">Ella & Hill Country</option>
-                    <option value="mirissa">Mirissa & Southern Coast</option>
-                    <option value="yala">Yala Wildlife Reserve</option>
-                    <option value="kandy">Kandy Sacred City</option>
-                </select>
-            </div>
+        <!-- Right Side -->
+        <div class="hero-content-right">
+            <div class="hero-image-cards">
+                <div class="image-card card-1">
+                    <img src="https://images.unsplash.com/photo-1506905925275-2244247509f6?q=80&w=600&auto=format&fit=crop" alt="Lake">
+                    <div class="card-location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <div>
+                            <span class="card-loc-name">The Location Name</span>
+                            <span class="card-loc-country">Country</span>
+                        </div>
+                    </div>
+                </div>
+                
 
-            <div class="search-field">
-                <label>Experience Type</label>
-                <select name="category">
-                    <option value="">All Categories</option>
-                    <option value="cultural">Cultural Heritage</option>
-                    <option value="adventure">Adventure & Nature</option>
-                    <option value="beach">Beach & Ocean</option>
-                    <option value="wildlife">Wildlife Safari</option>
-                    <option value="luxury">Luxury & Honeymoon</option>
-                </select>
-            </div>
 
-            <div class="search-field">
-                <label>Duration</label>
-                <select name="duration">
-                    <option value="">Any Duration</option>
-                    <option value="1-5">1 - 5 Days</option>
-                    <option value="6-8">6 - 8 Days</option>
-                    <option value="9+">9+ Days</option>
-                </select>
+                <div class="image-card card-2">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop" alt="Mountains">
+                    <div class="card-location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <div>
+                            <span class="card-loc-name">The Location Name</span>
+                            <span class="card-loc-country">Country</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <button class="btn btn-emerald search-btn" onclick="document.getElementById('packages').scrollIntoView({behavior: 'smooth'})">
-                🔍 Find Tours
-            </button>
+        </div>
+        
+        <!-- Socials -->
+        <div class="hero-socials">
+            <a href="#" class="social-icon">ig</a>
+            <a href="#" class="social-icon">fb</a>
+            <a href="#" class="social-icon">tw</a>
+            <a href="#" class="social-icon">in</a>
         </div>
     </div>
 </section>
