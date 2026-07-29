@@ -18,7 +18,7 @@ if (!isset($current_page)) {
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
     <link rel="icon" href="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=64&q=80">
 </head>
 <body>

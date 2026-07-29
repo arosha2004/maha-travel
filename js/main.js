@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initMobileNav();
+    initToursDeck();
     initCategoryTabs();
     initItineraryEstimator();
     initModalHandlers();
@@ -44,12 +45,48 @@ function initMobileNav() {
     });
 }
 
+let toursSwiper = null;
+let allPackageSlides = [];
+
+function initToursDeck() {
+    const wrapper = document.querySelector('.tours-coverflow-swiper .swiper-wrapper');
+    if (!wrapper) return;
+
+    // Cache all slides for filtering
+    allPackageSlides = Array.from(wrapper.querySelectorAll('.tour-cf-slide'));
+
+    toursSwiper = new Swiper('.tours-coverflow-swiper', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop: true,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 120,
+            modifier: 2.5,
+            slideShadows: false,  // no blur/shadow on side cards
+        },
+        navigation: {
+            nextEl: '.tcf-next',
+            prevEl: '.tcf-prev',
+        },
+        pagination: {
+            el: '.tcf-dots',
+            clickable: true,
+        },
+        observer: true,
+        observeParents: true,
+    });
+}
+
 // 3. Category Filter Tabs for Packages
 function initCategoryTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
-    const packageCards = document.querySelectorAll('.package-card');
+    const wrapper = document.querySelector('.tours-coverflow-swiper .swiper-wrapper');
 
-    if (!tabBtns.length) return;
+    if (!tabBtns.length || !wrapper) return;
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -58,16 +95,24 @@ function initCategoryTabs() {
 
             const category = btn.dataset.category;
 
-            packageCards.forEach(card => {
-                const cardCat = card.dataset.category;
+            // Rebuild swiper wrapper with filtered slides (no loop duplicates)
+            if (toursSwiper) {
+                toursSwiper.destroy(true, true);
+                toursSwiper = null;
+            }
+
+            wrapper.innerHTML = '';
+            allPackageSlides.forEach(slide => {
+                const cardCat = slide.dataset.category;
                 if (category === 'all' || cardCat === category) {
-                    card.style.display = 'flex';
-                    card.style.opacity = '1';
-                } else {
-                    card.style.display = 'none';
-                    card.style.opacity = '0';
+                    wrapper.appendChild(slide.cloneNode(true));
                 }
             });
+
+            // Re-init swiper
+            initToursDeck();
+            // Re-bind modal buttons on newly cloned slides
+            initModalHandlers();
         });
     });
 }
@@ -182,25 +227,25 @@ function initFormSubmissions() {
                 method: 'POST',
                 body: formData
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showToast(data.message, 'success');
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        showToast(data.message, 'success');
+                        bookingForm.reset();
+                        const modal = document.getElementById('quick-modal');
+                        if (modal) modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    } else {
+                        showToast(data.message || 'An error occurred.', 'error');
+                    }
+                })
+                .catch(err => {
+                    showToast('Booking request submitted! Reference MLT-84920. Concierge will reach out shortly.', 'success');
                     bookingForm.reset();
                     const modal = document.getElementById('quick-modal');
                     if (modal) modal.classList.remove('active');
                     document.body.style.overflow = 'auto';
-                } else {
-                    showToast(data.message || 'An error occurred.', 'error');
-                }
-            })
-            .catch(err => {
-                showToast('Booking request submitted! Reference MLT-84920. Concierge will reach out shortly.', 'success');
-                bookingForm.reset();
-                const modal = document.getElementById('quick-modal');
-                if (modal) modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
+                });
         });
     }
 
@@ -213,19 +258,19 @@ function initFormSubmissions() {
                 method: 'POST',
                 body: formData
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showToast(data.message, 'success');
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        showToast(data.message, 'success');
+                        contactForm.reset();
+                    } else {
+                        showToast(data.message || 'An error occurred.', 'error');
+                    }
+                })
+                .catch(err => {
+                    showToast('Thank you! Your inquiry has been submitted successfully.', 'success');
                     contactForm.reset();
-                } else {
-                    showToast(data.message || 'An error occurred.', 'error');
-                }
-            })
-            .catch(err => {
-                showToast('Thank you! Your inquiry has been submitted successfully.', 'success');
-                contactForm.reset();
-            });
+                });
         });
     }
 }
@@ -259,7 +304,7 @@ function showToast(message, type = 'success') {
 function initHeroSlider() {
     const cardsContainer = document.querySelector('.hero-image-cards');
     if (!cardsContainer) return;
-    
+
     const locations = [
         {
             image: "https://images.unsplash.com/photo-1506905925275-2244247509f6?q=80&w=600&auto=format&fit=crop",
@@ -289,7 +334,7 @@ function initHeroSlider() {
     // Remove static cards from HTML (except the nav button which we keep)
     const existingCards = cardsContainer.querySelectorAll('.image-card');
     existingCards.forEach(c => c.remove());
-    
+
     function createCard(loc, indexClass) {
         const div = document.createElement('div');
         div.className = `image-card ${indexClass}`;
@@ -308,7 +353,7 @@ function initHeroSlider() {
 
     let card1 = createCard(locations[0], 'card-1');
     let card2 = createCard(locations[1], 'card-2');
-    
+
     cardsContainer.appendChild(card1);
     cardsContainer.appendChild(card2);
 
@@ -321,16 +366,16 @@ function initHeroSlider() {
 
         card1.classList.remove('card-1');
         card1.classList.add('card-out');
-        
+
         card2.classList.remove('card-2');
         card2.classList.add('card-1');
 
         let newCard2 = createCard(locations[nextIndex], 'card-new');
         cardsContainer.appendChild(newCard2);
-        
+
         // Trigger reflow
         void newCard2.offsetWidth;
-        
+
         newCard2.classList.remove('card-new');
         newCard2.classList.add('card-2');
 
@@ -340,7 +385,7 @@ function initHeroSlider() {
                 oldCard.remove();
             }
             isAnimating = false;
-        }, 600); 
+        }, 600);
 
         card1 = card2;
         card2 = newCard2;
