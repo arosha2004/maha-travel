@@ -56,17 +56,30 @@ function initToursDeck() {
     allPackageSlides = Array.from(wrapper.querySelectorAll('.tour-cf-slide'));
 
     toursSwiper = new Swiper('.tours-coverflow-swiper', {
-        effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
-        slidesPerView: 'auto',
+        slidesPerView: 3,
+        spaceBetween: 24,
         loop: true,
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 120,
-            modifier: 2.5,
-            slideShadows: false,  // no blur/shadow on side cards
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
+        speed: 700,
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 16
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 24
+            }
         },
         navigation: {
             nextEl: '.tcf-next',

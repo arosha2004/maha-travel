@@ -172,44 +172,47 @@ include_once __DIR__ . '/includes/header.php';
             <button class="tab-btn" data-category="wildlife">🐆 Wildlife Safari</button>
             <button class="tab-btn" data-category="luxury">💍 Luxury & Romance</button>
         </div>
-    </div>
 
-    <!-- Coverflow Slider — full-width, outside container so cards bleed to edges -->
-    <div class="tours-coverflow-wrap">
-        <div class="swiper tours-coverflow-swiper">
-            <div class="swiper-wrapper">
-                <?php foreach ($tours as $tour): ?>
-                    <div class="swiper-slide tour-cf-slide" data-category="<?php echo htmlspecialchars($tour['category_code']); ?>">
-                        <div class="tour-cf-card">
-                            <div class="tour-cf-img">
-                                <img src="<?php echo htmlspecialchars($tour['image']); ?>" alt="<?php echo htmlspecialchars($tour['title']); ?>" loading="lazy">
-                                <span class="tour-cf-badge"><?php echo htmlspecialchars($tour['badge']); ?></span>
-                                <div class="tour-cf-price">$<?php echo htmlspecialchars($tour['price']); ?><span> / person</span></div>
-                            </div>
-                            <div class="tour-cf-body">
-                                <div class="tour-cf-meta">
-                                    <span class="tour-cf-duration">⏱️ <?php echo htmlspecialchars($tour['duration']); ?></span>
-                                    <span class="tour-cf-rating">★ <?php echo htmlspecialchars($tour['rating']); ?> <em>(<?php echo htmlspecialchars($tour['reviews_count']); ?>)</em></span>
+        <!-- Coverflow Slider — Centered within container -->
+        <div class="tours-coverflow-wrap">
+            <div class="swiper tours-coverflow-swiper">
+                <div class="swiper-wrapper">
+                    <?php
+                    // Duplicate tours array so Swiper has enough slides for seamless loop (needs >= slidesPerView * 2)
+                    $looped_tours = array_merge($tours, $tours);
+                    foreach ($looped_tours as $tour): ?>
+                        <div class="swiper-slide tour-cf-slide" data-category="<?php echo htmlspecialchars($tour['category_code']); ?>">
+                            <div class="tour-cf-card">
+                                <div class="tour-cf-img">
+                                    <img src="<?php echo htmlspecialchars($tour['image']); ?>" alt="<?php echo htmlspecialchars($tour['title']); ?>" loading="lazy">
+                                    <span class="tour-cf-badge"><?php echo htmlspecialchars($tour['badge']); ?></span>
+                                    <div class="tour-cf-price">$<?php echo htmlspecialchars($tour['price']); ?><span> / person</span></div>
                                 </div>
-                                <h3 class="tour-cf-title"><?php echo htmlspecialchars($tour['title']); ?></h3>
-                                <p class="tour-cf-desc"><?php echo htmlspecialchars($tour['subtitle']); ?></p>
-                                <div class="tour-cf-highlights">
-                                    <?php foreach (array_slice($tour['highlights'], 0, 3) as $hl): ?>
-                                        <span class="highlight-tag">✓ <?php echo htmlspecialchars($hl); ?></span>
-                                    <?php endforeach; ?>
-                                </div>
-                                <div class="tour-cf-footer">
-                                    <button class="btn btn-emerald btn-quick-view">Quick View</button>
-                                    <button class="btn btn-primary btn-plan-trip">Book Now</button>
+                                <div class="tour-cf-body">
+                                    <div class="tour-cf-meta">
+                                        <span class="tour-cf-duration">⏱️ <?php echo htmlspecialchars($tour['duration']); ?></span>
+                                        <span class="tour-cf-rating">★ <?php echo htmlspecialchars($tour['rating']); ?> <em>(<?php echo htmlspecialchars($tour['reviews_count']); ?>)</em></span>
+                                    </div>
+                                    <h3 class="tour-cf-title"><?php echo htmlspecialchars($tour['title']); ?></h3>
+                                    <p class="tour-cf-desc"><?php echo htmlspecialchars($tour['subtitle']); ?></p>
+                                    <div class="tour-cf-highlights">
+                                        <?php foreach (array_slice($tour['highlights'], 0, 3) as $hl): ?>
+                                            <span class="highlight-tag">✓ <?php echo htmlspecialchars($hl); ?></span>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="tour-cf-footer">
+                                        <button class="btn btn-emerald btn-quick-view">Quick View</button>
+                                        <button class="btn btn-primary btn-plan-trip">Book Now</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+                <div class="swiper-button-prev tcf-prev"></div>
+                <div class="swiper-button-next tcf-next"></div>
+                <div class="swiper-pagination tcf-dots"></div>
             </div>
-            <div class="swiper-button-prev tcf-prev"></div>
-            <div class="swiper-button-next tcf-next"></div>
-            <div class="swiper-pagination tcf-dots"></div>
         </div>
     </div>
 </section>
