@@ -17,7 +17,7 @@ if (!isset($current_page)) {
     <meta name="author" content="Maha Lanka Tours">
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=64&q=80">
+    <link rel="icon" href="images/sigiriya_rock.png">
 </head>
 <body>
 

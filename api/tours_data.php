@@ -15,11 +15,11 @@ function get_all_tours() {
             'price' => 850,
             'rating' => 4.9,
             'reviews_count' => 128,
-            'image' => 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/sigiriya_rock.png',
             'gallery' => [
-                'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80'
+                'images/sigiriya_rock.png',
+                'images/kandy_temple.png',
+                'images/sri_lanka_tea_estate.png'
             ],
             'region' => 'Cultural Triangle',
             'badge' => 'Bestseller',
@@ -52,10 +52,10 @@ function get_all_tours() {
             'price' => 720,
             'rating' => 4.95,
             'reviews_count' => 94,
-            'image' => 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/ella_nine_arch.png',
             'gallery' => [
-                'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80'
+                'images/ella_nine_arch.png',
+                'images/sri_lanka_tea_estate.png'
             ],
             'region' => 'Central Highlands',
             'badge' => 'Top Scenic',
@@ -87,10 +87,10 @@ function get_all_tours() {
             'price' => 980,
             'rating' => 4.88,
             'reviews_count' => 156,
-            'image' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/mirissa_beach_whale.png',
             'gallery' => [
-                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=80'
+                'images/mirissa_beach_whale.png',
+                'images/galle_dutch_fort.png'
             ],
             'region' => 'Southern Coast',
             'badge' => 'Popular',
@@ -124,10 +124,10 @@ function get_all_tours() {
             'price' => 690,
             'rating' => 4.92,
             'reviews_count' => 88,
-            'image' => 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/yala_leopard_safari.png',
             'gallery' => [
-                'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=800&q=80'
+                'images/yala_leopard_safari.png',
+                'images/hero_sri_lanka.png'
             ],
             'region' => 'Deep South Wildlife Reserve',
             'badge' => 'Adventure',
@@ -158,10 +158,10 @@ function get_all_tours() {
             'price' => 1650,
             'rating' => 5.0,
             'reviews_count' => 62,
-            'image' => 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/luxury_honeymoon_villa.png',
             'gallery' => [
-                'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80'
+                'images/luxury_honeymoon_villa.png',
+                'images/mirissa_beach_whale.png'
             ],
             'region' => 'Island-wide VIP',
             'badge' => 'Luxury Ultra',
@@ -201,7 +201,7 @@ function get_destinations_data() {
             'name' => 'Sigiriya Rock Fortress',
             'region' => 'Cultural Triangle',
             'category' => 'History & Heritage',
-            'image' => 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/sigiriya_rock.png',
             'desc' => 'An ancient 5th-century palace fortress built atop a 200m sheer rock column surrounded by gardens.',
             'best_time' => 'Dec - April'
         ],
@@ -209,7 +209,7 @@ function get_destinations_data() {
             'name' => 'Ella Highlands',
             'region' => 'Central Hill Country',
             'category' => 'Nature & Trekking',
-            'image' => 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/ella_nine_arch.png',
             'desc' => 'Mist-enshrouded mountain peaks, waterfalls, famous nine-arch bridge, and rolling tea gardens.',
             'best_time' => 'Jan - May'
         ],
@@ -217,7 +217,7 @@ function get_destinations_data() {
             'name' => 'Mirissa Coastal Haven',
             'region' => 'Southern Province',
             'category' => 'Beaches & Ocean',
-            'image' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/mirissa_beach_whale.png',
             'desc' => 'Famous for coconut hills, turquoise surfing bays, and world-class blue whale watching expeditions.',
             'best_time' => 'Nov - April'
         ],
@@ -225,7 +225,7 @@ function get_destinations_data() {
             'name' => 'Kandy Sacred City',
             'region' => 'Central Province',
             'category' => 'Culture & Religion',
-            'image' => 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/kandy_temple.png',
             'desc' => 'Lakeside royal city housing the Sacred Tooth Relic of Buddha, surrounded by tropical forest hills.',
             'best_time' => 'Year Round'
         ],
@@ -233,7 +233,7 @@ function get_destinations_data() {
             'name' => 'Yala National Park',
             'region' => 'Southern Wild Reserve',
             'category' => 'Wildlife & Safari',
-            'image' => 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/yala_leopard_safari.png',
             'desc' => 'Home to the world’s highest density of leopards, wild elephants, sloth bears, and 200+ bird species.',
             'best_time' => 'Feb - July'
         ],
@@ -241,9 +241,10 @@ function get_destinations_data() {
             'name' => 'Galle Dutch Fort',
             'region' => 'Southern Coast',
             'category' => 'Colonial Heritage',
-            'image' => 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=80',
+            'image' => 'images/galle_dutch_fort.png',
             'desc' => 'Living 17th-century UNESCO Dutch fort with ramparts, lighthouse, luxury boutiques, and cafes.',
             'best_time' => 'Nov - April'
         ]
     ];
 }
+

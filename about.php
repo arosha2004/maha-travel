@@ -28,7 +28,7 @@ include_once __DIR__ . '/includes/header.php';
                 <button class="btn btn-emerald btn-plan-trip">Meet Our Concierge Team</button>
             </div>
             <div>
-                <img src="https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80" alt="Maha Lanka Experience" style="border-radius: var(--radius-lg); box-shadow: var(--card-shadow);">
+                <img src="images/sri_lanka_tea_estate.png" alt="Maha Lanka Experience" style="border-radius: var(--radius-lg); box-shadow: var(--card-shadow); width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
     </div>
