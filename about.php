@@ -43,22 +43,30 @@ include_once __DIR__ . '/includes/header.php';
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🏅</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                </div>
                 <h3 class="feature-title">Top 1% Rated Service</h3>
                 <p class="feature-desc">Consistently rated 5 stars on TripAdvisor & Google Reviews with 500+ glowing testimonials.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🤝</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 1 0 7.75"/></svg>
+                </div>
                 <h3 class="feature-title">Private & Tailor-Made</h3>
                 <p class="feature-desc">No shared bus tours. 100% private custom itineraries tailored to your pace and preferences.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🌱</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A60.4 60.4 0 0 1 2 2a60.4 60.4 0 0 1 18 9 60.4 60.4 0 0 1-9 9Z"/><path d="M2 2l18 18"/></svg>
+                </div>
                 <h3 class="feature-title">Eco & Rainforest Offset</h3>
                 <p class="feature-desc">100% carbon-neutral operations supporting rainforest reforestation initiatives in Sinharaja.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">💎</div>
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M11 3 8 9l4 12 4-12-3-6"/><path d="M2 9h20"/></svg>
+                </div>
                 <h3 class="feature-title">Best Price Guarantee</h3>
                 <p class="feature-desc">Direct contracts with 5-star hotels and luxury resorts ensuring unbeatable pricing without middleman markups.</p>
             </div>

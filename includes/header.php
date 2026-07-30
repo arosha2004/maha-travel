@@ -16,7 +16,9 @@ if (!isset($current_page)) {
     <meta name="keywords" content="Sri Lanka Tours, Travel Sri Lanka, Sigiriya, Kandy, Ella Train, Yala Safari, Mirissa Whale Watching, Luxury Travel Sri Lanka">
     <meta name="author" content="Maha Lanka Tours">
     <title><?php echo htmlspecialchars($page_title); ?></title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
     <link rel="icon" href="images/sigiriya_rock.png">
 </head>
 <body>
@@ -24,25 +26,21 @@ if (!isset($current_page)) {
     <header class="site-header">
         <div class="container">
             <div class="header-wrapper">
-                <a href="index.php" class="brand-logo">
-                    <div class="logo-icon">M</div>
-                    <div class="logo-text">
-                        <span class="logo-title">MAHA LANKA</span>
-                        <span class="logo-tagline">Tours & Indulgence</span>
-                    </div>
+                <a href="index.php" class="brand-logo" style="gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+                    <span style="font-size: 1.5rem; font-weight: 700; font-family: var(--font-body);">Ventures</span>
                 </a>
 
                 <nav class="nav-menu">
-                    <a href="index.php" class="nav-link <?php echo $current_page == 'home' ? 'active' : ''; ?>">Home</a>
-                    <a href="tours.php" class="nav-link <?php echo $current_page == 'tours' ? 'active' : ''; ?>">Tour Packages</a>
-                    <a href="destinations.php" class="nav-link <?php echo $current_page == 'destinations' ? 'active' : ''; ?>">Destinations</a>
-                    <a href="about.php" class="nav-link <?php echo $current_page == 'about' ? 'active' : ''; ?>">About Us</a>
-                    <a href="contact.php" class="nav-link <?php echo $current_page == 'contact' ? 'active' : ''; ?>">Contact Us</a>
+                    <a href="destinations.php" class="nav-link <?php echo ($current_page == 'destinations') ? 'active' : ''; ?>">Destination</a>
+                    <a href="about.php" class="nav-link <?php echo ($current_page == 'about') ? 'active' : ''; ?>">Services</a>
+                    <a href="tours.php" class="nav-link <?php echo ($current_page == 'tours') ? 'active' : ''; ?>">Tour Packages</a>
+                    <a href="contact.php" class="nav-link <?php echo ($current_page == 'contact') ? 'active' : ''; ?>">Contact</a>
                 </nav>
 
                 <div class="header-actions">
-                    <button class="btn btn-primary btn-plan-trip">Plan My Trip</button>
-                    <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+                    <a href="tours.php#packages" class="btn btn-primary" style="border-radius: 30px; padding: 10px 24px; font-weight: 600; text-decoration: none;">Book Now</a>
+                    <button class="mobile-toggle" aria-label="Toggle navigation"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
                 </div>
             </div>
         </div>

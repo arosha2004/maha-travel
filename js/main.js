@@ -3,10 +3,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initMobileNav();
+    initToursDeck();
     initCategoryTabs();
     initItineraryEstimator();
     initModalHandlers();
     initFormSubmissions();
+    initHeroSlider();
+    initTestimonialsSlider();
 });
 
 // 1. Header Sticky Effect
@@ -43,12 +46,61 @@ function initMobileNav() {
     });
 }
 
+let toursSwiper = null;
+let allPackageSlides = [];
+
+function initToursDeck() {
+    const wrapper = document.querySelector('.tours-coverflow-swiper .swiper-wrapper');
+    if (!wrapper) return;
+
+    // Cache all slides for filtering
+    allPackageSlides = Array.from(wrapper.querySelectorAll('.tour-cf-slide'));
+
+    toursSwiper = new Swiper('.tours-coverflow-swiper', {
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 3,
+        spaceBetween: 24,
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
+        speed: 700,
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 16
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 24
+            }
+        },
+        navigation: {
+            nextEl: '.tcf-next',
+            prevEl: '.tcf-prev',
+        },
+        pagination: {
+            el: '.tcf-dots',
+            clickable: true,
+        },
+        observer: true,
+        observeParents: true,
+    });
+}
+
 // 3. Category Filter Tabs for Packages
 function initCategoryTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
-    const packageCards = document.querySelectorAll('.package-card');
+    const wrapper = document.querySelector('.tours-coverflow-swiper .swiper-wrapper');
 
-    if (!tabBtns.length) return;
+    if (!tabBtns.length || !wrapper) return;
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -57,16 +109,24 @@ function initCategoryTabs() {
 
             const category = btn.dataset.category;
 
-            packageCards.forEach(card => {
-                const cardCat = card.dataset.category;
+            // Rebuild swiper wrapper with filtered slides (no loop duplicates)
+            if (toursSwiper) {
+                toursSwiper.destroy(true, true);
+                toursSwiper = null;
+            }
+
+            wrapper.innerHTML = '';
+            allPackageSlides.forEach(slide => {
+                const cardCat = slide.dataset.category;
                 if (category === 'all' || cardCat === category) {
-                    card.style.display = 'flex';
-                    card.style.opacity = '1';
-                } else {
-                    card.style.display = 'none';
-                    card.style.opacity = '0';
+                    wrapper.appendChild(slide.cloneNode(true));
                 }
             });
+
+            // Re-init swiper
+            initToursDeck();
+            // Re-bind modal buttons on newly cloned slides
+            initModalHandlers();
         });
     });
 }
@@ -181,25 +241,25 @@ function initFormSubmissions() {
                 method: 'POST',
                 body: formData
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showToast(data.message, 'success');
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        showToast(data.message, 'success');
+                        bookingForm.reset();
+                        const modal = document.getElementById('quick-modal');
+                        if (modal) modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    } else {
+                        showToast(data.message || 'An error occurred.', 'error');
+                    }
+                })
+                .catch(err => {
+                    showToast('Booking request submitted! Reference MLT-84920. Concierge will reach out shortly.', 'success');
                     bookingForm.reset();
                     const modal = document.getElementById('quick-modal');
                     if (modal) modal.classList.remove('active');
                     document.body.style.overflow = 'auto';
-                } else {
-                    showToast(data.message || 'An error occurred.', 'error');
-                }
-            })
-            .catch(err => {
-                showToast('Booking request submitted! Reference MLT-84920. Concierge will reach out shortly.', 'success');
-                bookingForm.reset();
-                const modal = document.getElementById('quick-modal');
-                if (modal) modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
+                });
         });
     }
 
@@ -212,19 +272,19 @@ function initFormSubmissions() {
                 method: 'POST',
                 body: formData
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showToast(data.message, 'success');
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        showToast(data.message, 'success');
+                        contactForm.reset();
+                    } else {
+                        showToast(data.message || 'An error occurred.', 'error');
+                    }
+                })
+                .catch(err => {
+                    showToast('Thank you! Your inquiry has been submitted successfully.', 'success');
                     contactForm.reset();
-                } else {
-                    showToast(data.message || 'An error occurred.', 'error');
-                }
-            })
-            .catch(err => {
-                showToast('Thank you! Your inquiry has been submitted successfully.', 'success');
-                contactForm.reset();
-            });
+                });
         });
     }
 }
@@ -252,4 +312,123 @@ function showToast(message, type = 'success') {
         toast.style.transform = 'translateX(100%)';
         setTimeout(() => toast.remove(), 300);
     }, 4500);
+}
+
+// 7. Hero Image Cards Slider
+function initHeroSlider() {
+    const cardsContainer = document.querySelector('.hero-image-cards');
+    if (!cardsContainer) return;
+
+    const locations = [
+        {
+            image: "https://images.unsplash.com/photo-1506905925275-2244247509f6?q=80&w=600&auto=format&fit=crop",
+            name: "Lake Gregory",
+            country: "Nuwara Eliya, Sri Lanka"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop",
+            name: "Ella Rock",
+            country: "Ella, Sri Lanka"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=600&auto=format&fit=crop",
+            name: "Sigiriya Fortress",
+            country: "Dambulla, Sri Lanka"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1578637387939-43c525550085?q=80&w=600&auto=format&fit=crop",
+            name: "Mirissa Beach",
+            country: "Mirissa, Sri Lanka"
+        }
+    ];
+
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    // Remove static cards from HTML (except the nav button which we keep)
+    const existingCards = cardsContainer.querySelectorAll('.image-card');
+    existingCards.forEach(c => c.remove());
+
+    function createCard(loc, indexClass) {
+        const div = document.createElement('div');
+        div.className = `image-card ${indexClass}`;
+        div.innerHTML = `
+            <img src="${loc.image}" alt="${loc.name}">
+            <div class="card-location">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                    <span class="card-loc-name">${loc.name}</span>
+                    <span class="card-loc-country">${loc.country}</span>
+                </div>
+            </div>
+        `;
+        return div;
+    }
+
+    let card1 = createCard(locations[0], 'card-1');
+    let card2 = createCard(locations[1], 'card-2');
+
+    cardsContainer.appendChild(card1);
+    cardsContainer.appendChild(card2);
+
+    function nextSlide() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        currentIndex = (currentIndex + 1) % locations.length;
+        let nextIndex = (currentIndex + 1) % locations.length;
+
+        card1.classList.remove('card-1');
+        card1.classList.add('card-out');
+
+        card2.classList.remove('card-2');
+        card2.classList.add('card-1');
+
+        let newCard2 = createCard(locations[nextIndex], 'card-new');
+        cardsContainer.appendChild(newCard2);
+
+        // Trigger reflow
+        void newCard2.offsetWidth;
+
+        newCard2.classList.remove('card-new');
+        newCard2.classList.add('card-2');
+
+        const oldCard = card1;
+        setTimeout(() => {
+            if (oldCard && oldCard.parentNode) {
+                oldCard.remove();
+            }
+            isAnimating = false;
+        }, 600);
+
+        card1 = card2;
+        card2 = newCard2;
+    }
+
+    let sliderInterval = setInterval(nextSlide, 4000);
+}
+
+// 8. Testimonials Slider
+function initTestimonialsSlider() {
+    const swiperEl = document.querySelector('.testimonials-swiper');
+    if (!swiperEl) return;
+
+    new Swiper('.testimonials-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.test-next',
+            prevEl: '.test-prev',
+        },
+        pagination: {
+            el: '.test-dots',
+            clickable: true,
+        },
+        autoHeight: true,
+    });
 }
