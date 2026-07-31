@@ -32,10 +32,25 @@ if (!isset($current_page)) {
                 </a>
 
                 <nav class="nav-menu">
-                    <a href="index.php" class="nav-link <?php echo ($current_page == 'home') ? 'active' : ''; ?>">Home</a>
-                    <a href="about.php" class="nav-link <?php echo ($current_page == 'about') ? 'active' : ''; ?>">About</a>
-                    <a href="destinations.php" class="nav-link <?php echo ($current_page == 'destinations') ? 'active' : ''; ?>">Destinations</a>
-                    <a href="contact.php" class="nav-link <?php echo ($current_page == 'contact') ? 'active' : ''; ?>">Contact</a>
+                    <button class="mobile-close" aria-label="Close navigation">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                    <a href="index.php" class="nav-link <?php echo ($current_page == 'home') ? 'active' : ''; ?>">
+                        Home 
+                        <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                    <a href="destinations.php" class="nav-link <?php echo ($current_page == 'destinations') ? 'active' : ''; ?>">
+                        Destinations 
+                        <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                    <a href="about.php" class="nav-link <?php echo ($current_page == 'about') ? 'active' : ''; ?>">
+                        About Us 
+                        <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                    <a href="contact.php" class="nav-link <?php echo ($current_page == 'contact') ? 'active' : ''; ?>">
+                        Contact 
+                        <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                     <a href="tours.php#packages" class="nav-book-btn" style="margin-top:20px;display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;background:linear-gradient(135deg,#0A192F,#162A45);color:#fff;border-radius:30px;font-weight:700;font-size:0.95rem;text-decoration:none;">Book Now</a>
                 </nav>
 
@@ -51,13 +66,13 @@ if (!isset($current_page)) {
     <div class="nav-overlay" id="nav-overlay"></div>
 
     <script>
-    (function() {
+    document.addEventListener('DOMContentLoaded', function() {
         var toggle = document.querySelector('.mobile-toggle');
         var menu   = document.querySelector('.nav-menu');
         var overlay = document.getElementById('nav-overlay');
 
         function openMenu() {
-            menu.classList.add('open');
+            if (menu) menu.classList.add('open');
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -78,6 +93,11 @@ if (!isset($current_page)) {
             });
         }
 
+        var closeBtn = document.querySelector('.mobile-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeMenu);
+        }
+
         if (overlay) {
             overlay.addEventListener('click', closeMenu);
         }
@@ -92,5 +112,5 @@ if (!isset($current_page)) {
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeMenu();
         });
-    })();
+    });
     </script>

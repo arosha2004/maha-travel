@@ -20,8 +20,88 @@
     }
 
     .header-actions .btn-primary {
-        padding: 9px 18px;
-        font-size: 0.88rem;
+        display: none; /* Hide "Book Now" button — show it in mobile menu instead */
+    }
+
+    .mobile-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+        width: min(360px, 90vw) !important;
+        height: 100vh;
+        background: #ffffff !important;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 60px 0 30px !important;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1) !important;
+        z-index: 9999 !important;
+        gap: 0;
+    }
+
+    .nav-menu.open,
+    .site-header .nav-menu.open {
+        transform: translateX(0) !important;
+    }
+
+    .mobile-close {
+        display: block !important;
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        background: none;
+        border: none;
+        color: #0A192F;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .nav-link {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        color: #0A192F !important;
+        font-weight: 500 !important;
+        font-size: 1.1rem;
+        padding: 18px 32px !important;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .nav-arrow {
+        display: block !important;
+        color: #94a3b8;
+    }
+
+    .nav-link:last-child {
+        border-bottom: none !important;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: #F2B544 !important;
+    }
+
+    .nav-link::after {
+        display: none !important;
+    }
+
+    .nav-book-btn {
+        margin: 32px 32px 0 !important;
+    }
+
+    /* Mobile Book Now inside menu */
+    .nav-menu::after {
+        content: '';
     }
 
     /* ── Section Titles ── */
@@ -113,63 +193,6 @@
     /* ── Header / Nav ── */
     .site-header {
         padding: 8px 0;
-    }
-
-    .header-actions .btn-primary {
-        display: none; /* Hide "Book Now" button — show it in mobile menu instead */
-    }
-
-    .mobile-toggle {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: min(320px, 85vw);
-        height: 100vh;
-        background: var(--dark);
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 48px 32px;
-        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.35);
-        z-index: 999;
-        gap: 8px;
-    }
-
-    .nav-menu.open {
-        right: 0;
-    }
-
-    .nav-link {
-        color: rgba(255, 255, 255, 0.85) !important;
-        font-size: 1.15rem;
-        padding: 10px 0;
-        width: 100%;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .nav-link:last-child {
-        border-bottom: none;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-        color: #F2B544 !important;
-    }
-
-    .nav-link::after {
-        display: none;
-    }
-
-    /* Mobile Book Now inside menu */
-    .nav-menu::after {
-        content: '';
     }
 
     /* ── Section global ── */
