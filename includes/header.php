@@ -26,9 +26,8 @@ if (!isset($current_page)) {
     <header class="site-header">
         <div class="container">
             <div class="header-wrapper">
-                <a href="index.php" class="brand-logo" style="gap: 12px;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
-                    <span style="font-size: 1.5rem; font-weight: 700; font-family: var(--font-body);">Ventures</span>
+                <a href="index.php" class="brand-logo" style="gap: 12px; display: flex; align-items: center; text-decoration: none;">
+                    <img src="images/mlankalogo_transparent.png" alt="Maha Lanka Tours Logo" style="height: 50px; width: auto; transform: scale(1.6); transform-origin: left center;">
                 </a>
 
                 <nav class="nav-menu">
