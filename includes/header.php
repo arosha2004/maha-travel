@@ -19,6 +19,7 @@ if (!isset($current_page)) {
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/responsive.css?v=<?php echo time(); ?>">
     <link rel="icon" href="images/sigiriya_rock.png">
 </head>
 <body>
@@ -35,6 +36,7 @@ if (!isset($current_page)) {
                     <a href="about.php" class="nav-link <?php echo ($current_page == 'about') ? 'active' : ''; ?>">About</a>
                     <a href="destinations.php" class="nav-link <?php echo ($current_page == 'destinations') ? 'active' : ''; ?>">Destinations</a>
                     <a href="contact.php" class="nav-link <?php echo ($current_page == 'contact') ? 'active' : ''; ?>">Contact</a>
+                    <a href="tours.php#packages" class="nav-book-btn" style="margin-top:20px;display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;background:linear-gradient(135deg,#0A192F,#162A45);color:#fff;border-radius:30px;font-weight:700;font-size:0.95rem;text-decoration:none;">Book Now</a>
                 </nav>
 
                 <div class="header-actions">
@@ -44,3 +46,51 @@ if (!isset($current_page)) {
             </div>
         </div>
     </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <script>
+    (function() {
+        var toggle = document.querySelector('.mobile-toggle');
+        var menu   = document.querySelector('.nav-menu');
+        var overlay = document.getElementById('nav-overlay');
+
+        function openMenu() {
+            menu.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menu.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (toggle) {
+            toggle.addEventListener('click', function() {
+                if (menu.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', closeMenu);
+        }
+
+        // Close on nav link click
+        var links = document.querySelectorAll('.nav-link');
+        links.forEach(function(link) {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMenu();
+        });
+    })();
+    </script>

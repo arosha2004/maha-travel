@@ -1,0 +1,847 @@
+/* =====================================================
+   MAHA LANKA TOURS — RESPONSIVE CSS
+   All breakpoints: tablet (768px), mobile (480px), small (360px)
+   Desktop layout (1024px+) is intentionally UNCHANGED.
+   ===================================================== */
+
+/* ─────────────────────────────────────────────
+   TABLET — max-width: 1024px
+   ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+
+    /* ── Container ── */
+    .container {
+        padding: 0 20px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+        padding: 10px 0;
+    }
+
+    .header-actions .btn-primary {
+        padding: 9px 18px;
+        font-size: 0.88rem;
+    }
+
+    /* ── Section Titles ── */
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    /* ── Hero (index.php) ── */
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    .hero-content-right {
+        min-width: auto;
+    }
+
+    /* ── Stats Banner ── */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    /* ── Destinations Grid ── */
+    .dest-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 280px 280px 280px;
+    }
+
+    .dest-card--featured {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    /* ── Packages Section ── */
+    .packages-section {
+        padding: 60px 0;
+    }
+
+    /* ── Why Section ── */
+    .why-section {
+        padding: 60px 0;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* ── Footer ── */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    /* ── Contact page grid ── */
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Estimator ── */
+    .estimator-box {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 28px;
+    }
+
+    /* ── Tour Detail layout ── */
+    .td-layout {
+        grid-template-columns: 1fr;
+        padding: 40px 24px 60px;
+    }
+
+    .td-sidebar {
+        order: -1;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   MOBILE — max-width: 768px
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* ── Container ── */
+    .container {
+        padding: 0 16px;
+    }
+
+    /* ── Header / Nav ── */
+    .site-header {
+        padding: 8px 0;
+    }
+
+    .header-actions .btn-primary {
+        display: none; /* Hide "Book Now" button — show it in mobile menu instead */
+    }
+
+    .mobile-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(320px, 85vw);
+        height: 100vh;
+        background: var(--dark);
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 48px 32px;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.35);
+        z-index: 999;
+        gap: 8px;
+    }
+
+    .nav-menu.open {
+        right: 0;
+    }
+
+    .nav-link {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-size: 1.15rem;
+        padding: 10px 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: #F2B544 !important;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    /* Mobile Book Now inside menu */
+    .nav-menu::after {
+        content: '';
+    }
+
+    /* ── Section global ── */
+    .section-title {
+        font-size: 1.9rem;
+        line-height: 1.2;
+    }
+
+    .section-desc {
+        font-size: 0.98rem;
+    }
+
+    .section-header {
+        margin-bottom: 32px;
+    }
+
+    /* ── Hero Section (index.php) ── */
+    .hero-section {
+        padding-top: 90px;
+        padding-bottom: 60px;
+        min-height: auto;
+    }
+
+    .hero-container {
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
+    .hero-content-left {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.98rem;
+        margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+        margin-bottom: 40px;
+    }
+
+    .hero-info-cards {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .info-card {
+        max-width: 100%;
+    }
+
+    .hero-content-right {
+        min-width: 100%;
+        justify-content: center;
+        margin-top: 32px;
+    }
+
+    .hero-image-cards {
+        justify-content: center;
+    }
+
+    .card-1 {
+        width: 200px;
+        height: 290px;
+    }
+
+    .card-2 {
+        width: 165px;
+        height: 240px;
+    }
+
+    .hero-socials {
+        display: none; /* Too cluttered on mobile */
+    }
+
+    /* ── Stats Banner ── */
+    .stats-banner {
+        padding: 28px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .stat-item .stat-number {
+        font-size: 2rem;
+    }
+
+    /* ── Destinations Grid (index.php) ── */
+    .destinations-section {
+        padding: 60px 0 80px;
+    }
+
+    .dest-cards-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .dest-card {
+        height: 280px;
+    }
+
+    .dest-card--featured {
+        grid-column: span 1;
+        height: 320px;
+    }
+
+    /* ── Packages / Tours Coverflow ── */
+    .packages-section {
+        padding: 50px 0;
+    }
+
+    .tours-coverflow-wrap {
+        padding: 20px 0 50px;
+    }
+
+    .tours-coverflow-swiper {
+        padding: 0 40px 20px;
+    }
+
+    /* ── Why Section ── */
+    .why-section {
+        padding: 50px 0;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .feature-card {
+        padding: 28px 22px;
+    }
+
+    /* ── Testimonials Section (index.php) ── */
+    .testimonials-section {
+        padding: 50px 0;
+    }
+
+    .testimonials-slider-wrap {
+        padding: 0 10px;
+    }
+
+    .testimonial-quote {
+        font-size: 1.3rem;
+    }
+
+    .testimonials-swiper .swiper-button-prev,
+    .testimonials-swiper .swiper-button-next {
+        display: none;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+        padding-top: 50px;
+        padding-bottom: 28px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .footer-bottom div:last-child {
+        justify-content: center;
+    }
+
+    /* ── Modal ── */
+    .modal-content-padding {
+        padding: 24px 20px;
+    }
+
+    .modal-container {
+        border-radius: 16px;
+    }
+
+    /* ── Contact Page ── */
+    .contact-section-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── About Page: Hero ── */
+    .about-hero {
+        height: 70vh;
+        min-height: 420px;
+    }
+
+    .hero-title {
+        font-size: 2.8rem !important;
+    }
+
+    /* ── About Page: Overlapping Cards ── */
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+        top: -80px !important;
+        margin-bottom: -80px !important;
+    }
+
+    /* ── About Page: Story Section ── */
+    .about-story-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    .about-story-grid .about-story-img {
+        order: -1;
+    }
+
+    /* ── About Page: Pillars Grid ── */
+    .pillars-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── About Page: Glass Stats Box ── */
+    .glass-stats-box {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px 0;
+    }
+
+    .stat-divider {
+        width: 60%;
+        height: 1px !important;
+    }
+
+    /* ── Destinations Page: Hero ── */
+    .hero-slider {
+        height: 45vh;
+        min-height: 300px;
+    }
+
+    .hero-arrow {
+        font-size: 2rem;
+        padding: 15px 18px;
+    }
+
+    /* ── Destinations Page: Filter Bar ── */
+    .dest-filter-bar {
+        padding: 14px 12px;
+    }
+
+    .dest-filter-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    /* ── Destinations Page: Tour Cards Grid ── */
+    .dest-tours-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* ── Tour Detail Page ── */
+    .td-hero {
+        height: 60vh;
+        min-height: 380px;
+    }
+
+    .td-hero__content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-bottom: 32px !important;
+    }
+
+    .td-hero__title {
+        font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
+    }
+
+    .td-layout {
+        padding: 28px 16px 50px !important;
+        gap: 24px !important;
+    }
+
+    .td-hero__stats {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .td-hero__scroll {
+        display: none;
+    }
+
+    /* ── Estimator Section ── */
+    .estimator-section {
+        padding: 50px 0;
+    }
+
+    .style-selector {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   SMALL MOBILE — max-width: 480px
+   ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+
+    /* ── Header ── */
+    .brand-logo img {
+        height: 38px !important;
+        transform: scale(1.8) !important;
+    }
+
+    /* ── Section Titles ── */
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    /* ── Hero (index.php) ── */
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+    }
+
+    .btn-explore {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-image-cards {
+        gap: 10px;
+    }
+
+    .card-1 {
+        width: 165px;
+        height: 250px;
+    }
+
+    .card-2 {
+        width: 135px;
+        height: 205px;
+    }
+
+    /* ── Stats Banner ── */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .stat-item .stat-number {
+        font-size: 1.75rem;
+    }
+
+    /* ── About Hero ── */
+    .about-hero {
+        height: 60vh;
+        min-height: 360px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem !important;
+    }
+
+    /* ── About Page: Cards Grid ── */
+    .cards-grid {
+        grid-template-columns: 1fr !important;
+        top: -50px !important;
+        margin-bottom: -50px !important;
+        padding: 0 12px !important;
+    }
+
+    .info-card {
+        padding: 28px 20px !important;
+    }
+
+    /* ── About Page: Glass Stats Box ── */
+    .glass-stats-box {
+        bottom: -40px !important;
+    }
+
+    /* ── Destinations Page ── */
+    .hero-slider {
+        height: 40vh;
+        min-height: 260px;
+    }
+
+    /* ── Footer ── */
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* ── Contact Form ── */
+    .contact-form-3col {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Style selector in estimator ── */
+    .style-selector {
+        grid-template-columns: 1fr;
+    }
+
+    /* ── Tour Detail ── */
+    .td-hero {
+        height: 55vh;
+        min-height: 320px;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   VERY SMALL — max-width: 360px
+   ───────────────────────────────────────────── */
+@media (max-width: 360px) {
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .card-1 {
+        width: 145px;
+        height: 220px;
+    }
+
+    .card-2 {
+        width: 120px;
+        height: 185px;
+    }
+
+    .about-hero {
+        height: 55vh !important;
+    }
+
+    .hero-title {
+        font-size: 1.9rem !important;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   CONTACT PAGE — inline style overrides
+   These target elements with inline styles using
+   !important to ensure responsive behaviour.
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Contact hero section title */
+    section[style*="padding: 140px"] h1.section-title {
+        font-size: 2rem !important;
+    }
+
+    /* Contact main grid (info + form) */
+    section[style*="padding: 80px 0 100px"] .container > div[style*="grid-template-columns: 1fr 1.5fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 28px !important;
+    }
+
+    /* Contact form inner 2-col grid */
+    form#contact-form > div[style*="grid-template-columns: 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    /* Modal booking form grids */
+    form#modal-booking-form > div[style*="grid-template-columns: 1fr 1fr"],
+    form#modal-booking-form > div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    /* Contact section padding */
+    section[style*="padding: 140px 0 60px"] {
+        padding: 100px 0 40px !important;
+    }
+
+    section[style*="padding: 80px 0 100px"] {
+        padding: 40px 0 60px !important;
+    }
+
+    /* Contact form container */
+    section[style*="padding: 80px 0 100px"] div[style*="padding: 40px"] {
+        padding: 24px 20px !important;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   ABOUT PAGE — inline style overrides
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Story grid */
+    section[style*="padding: 80px 0; background-color: var(--bg-white)"] .container > div[style*="grid-template-columns: 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column-reverse !important;
+        gap: 28px !important;
+    }
+
+    /* Section title inside about story */
+    section[style*="padding: 80px 0; background-color: var(--bg-white)"] h2.section-title {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Pillars section padding */
+    section[style*="padding: 100px 0; background: var(--beige-sand)"] {
+        padding: 50px 0 !important;
+    }
+
+    /* CTA section */
+    .dest-cta-section {
+        padding: 50px 20px !important;
+    }
+
+    .dest-cta__buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dest-cta__btn-primary,
+    .dest-cta__btn-secondary {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    section[style*="padding: 80px 0; background-color: var(--bg-white)"] h2.section-title {
+        font-size: 1.5rem !important;
+    }
+
+    .dest-cta__title {
+        font-size: 1.6rem !important;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   DESTINATIONS PAGE — specific responsive fixes
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Destinations page hero overlay / title */
+    .dest-section-header {
+        margin-bottom: 28px !important;
+    }
+
+    .dest-section-title {
+        font-size: 1.8rem !important;
+    }
+
+    /* Destination page body */
+    .dest-page-body {
+        padding: 40px 0 60px !important;
+    }
+
+    /* Tour cards on destinations page */
+    .dest-tours-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* CTA banner on destinations page */
+    .dest-cta-section {
+        padding: 50px 16px !important;
+    }
+
+    /* Filter bar sticky below fixed header */
+    .dest-filter-bar {
+        top: 62px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .dest-section-title {
+        font-size: 1.5rem !important;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   TOUR DETAIL PAGE — extra mobile fixes
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    .td-hero__stats {
+        gap: 12px;
+    }
+
+    .td-hero__stat {
+        font-size: 0.82rem;
+    }
+
+    .td-hero__breadcrumb {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    /* Sidebar sticky behaviour disabled on mobile */
+    .td-sidebar {
+        position: static !important;
+        top: auto !important;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   NAV OVERLAY (darkens screen when mobile menu open)
+   ───────────────────────────────────────────── */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.nav-overlay.active {
+    display: block;
+}
+
+/* Book Now button inside mobile nav: hidden on desktop */
+.nav-book-btn {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .nav-book-btn {
+        display: inline-flex !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .nav-overlay {
+        display: none !important;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   SEARCH FIELD RESPONSIVE
+   ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .search-field input,
+    .search-field textarea {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+    }
+}
