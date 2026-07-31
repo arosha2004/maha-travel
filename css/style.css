@@ -152,25 +152,14 @@ img {
     width: 100%;
     z-index: 1000;
     transition: var(--transition);
-    padding: 16px 0;
-    background: transparent;
-    border-bottom: 1px solid transparent;
-}
-
-.site-header.scrolled {
-    background: var(--beige-sand);
     padding: 12px 0;
+    background: var(--beige-sand);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .brand-logo, .brand-logo span {
-    color: #ffffff;
-    transition: var(--transition);
-}
-
-.site-header.scrolled .brand-logo,
-.site-header.scrolled .brand-logo span {
     color: #000000;
+    transition: var(--transition);
 }
 
 .header-wrapper {
@@ -228,16 +217,12 @@ img {
 }
 
 .nav-link {
-    color: #ffffff;
+    color: #111111;
     font-weight: 600;
     font-size: 0.95rem;
     position: relative;
     padding: 6px 0;
     transition: color 0.3s ease;
-}
-
-.site-header.scrolled .nav-link {
-    color: #111111;
 }
 
 .nav-link:hover,
@@ -322,15 +307,11 @@ img {
 .mobile-toggle {
     display: none;
     font-size: 1.5rem;
-    color: #ffffff;
+    color: #000000;
     background: none;
     border: none;
     cursor: pointer;
     transition: color 0.3s ease;
-}
-
-.site-header.scrolled .mobile-toggle {
-    color: #000000;
 }
 
 /* Hero Section */

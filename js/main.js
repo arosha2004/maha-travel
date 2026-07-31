@@ -1,7 +1,7 @@
 /* Maha Lanka Tours - Interactive JavaScript Logic */
 
 document.addEventListener('DOMContentLoaded', () => {
-    initHeaderScroll();
+
     initMobileNav();
     initToursDeck();
     initCategoryTabs();
@@ -12,19 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTestimonialsSlider();
 });
 
-// 1. Header Sticky Effect
-function initHeaderScroll() {
-    const header = document.querySelector('.site-header');
-    if (!header) return;
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-}
 
 // 2. Mobile Navigation Drawer Toggle
 function initMobileNav() {

@@ -6,19 +6,66 @@ include_once __DIR__ . '/includes/header.php';
 ?>
 
 <style>
+    /* ── About Hero Slideshow ─────────────────────────── */
     .about-hero {
         position: relative;
-        padding: 150px 0 170px; /* Adjusted padding to move text down */
-        background-image: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.6)), url('images/about_hero_bg.png');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+        height: 90vh;
+        min-height: 520px;
+        overflow: hidden;
         color: #fff;
         text-align: center;
     }
-    .about-hero .container {
-        position: relative;
-        z-index: 2;
+
+    /* Each slide image */
+    .about-hero .slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+        z-index: 0;
+    }
+    .about-hero .slide.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    /* Text container sits above slides */
+    .about-hero .hero-content {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 20px;
+    }
+
+    /* Dot indicators */
+    .about-hero .slide-dots {
+        position: absolute;
+        bottom: 100px;   /* sits just above the glass-stats area */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 4;
+    }
+    .about-hero .slide-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.45);
+        border: none;
+        cursor: pointer;
+        transition: background 0.35s, transform 0.35s;
+        padding: 0;
+    }
+    .about-hero .slide-dot.active {
+        background: #fff;
+        transform: scale(1.3);
     }
 
     .hero-title {
@@ -174,12 +221,64 @@ include_once __DIR__ . '/includes/header.php';
     }
 </style>
 
-<!-- Hero Section -->
-<section class="about-hero">
-    <div class="container">
+<!-- Hero Section with Slideshow -->
+<section class="about-hero" id="about-hero">
+
+    <!-- Slide images -->
+    <div class="slide active" style="background-image: url('images/slideshow1/169.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slideshow1/368.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slideshow1/jerry-kavan-i9eaAR4dWi8-unsplash.jpg');"></div>
+    <div class="slide" style="background-image: url('images/slideshow1/wallpaperflare.com_wallpaper (1).jpg');"></div>
+    <div class="slide" style="background-image: url('images/slideshow1/wallpaperflare.com_wallpaper (2).jpg');"></div>
+    <div class="slide" style="background-image: url('images/slideshow1/wallpaperflare.com_wallpaper.jpg');"></div>
+
+    <!-- Hero text -->
+    <div class="hero-content">
         <h1 class="hero-title">We help travelers</h1>
     </div>
+
+    <!-- Dot navigation -->
+    <div class="slide-dots" id="slide-dots"></div>
+
 </section>
+
+<script>
+(function() {
+    const hero   = document.getElementById('about-hero');
+    const slides = hero.querySelectorAll('.slide');
+    const dotsEl = document.getElementById('slide-dots');
+    let current  = 0;
+    let timer;
+
+    // Build dots
+    slides.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'slide-dot' + (i === 0 ? ' active' : '');
+        btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+        btn.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(btn);
+    });
+
+    const dots = dotsEl.querySelectorAll('.slide-dot');
+
+    function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+
+    function next() { goTo(current + 1); }
+
+    function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, 5000);
+    }
+
+    startTimer();
+})();
+</script>
 
 <!-- Overlapping Cards Section -->
 <div class="overlapping-cards-wrapper">
