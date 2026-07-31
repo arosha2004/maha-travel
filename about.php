@@ -560,7 +560,7 @@ include_once __DIR__ . '/includes/header.php';
     /* ── Testimonials Section ─────────────────────────── */
     .testimonials-section {
         padding: 100px 0;
-        background: linear-gradient(160deg, #0f1f45 0%, #1a3270 50%, #0f1f45 100%);
+        background: #E8DCCB; /* Darker beige background */
         position: relative;
         overflow: hidden;
     }
@@ -569,7 +569,7 @@ include_once __DIR__ . '/includes/header.php';
         position: absolute;
         top: -200px; right: -200px;
         width: 600px; height: 600px;
-        background: radial-gradient(circle, rgba(242,181,68,0.08) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
         border-radius: 50%;
         pointer-events: none;
     }
@@ -578,11 +578,10 @@ include_once __DIR__ . '/includes/header.php';
         position: absolute;
         bottom: -150px; left: -150px;
         width: 450px; height: 450px;
-        background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
         border-radius: 50%;
         pointer-events: none;
     }
-
     .testimonials-header {
         text-align: center;
         margin-bottom: 60px;
@@ -592,7 +591,7 @@ include_once __DIR__ . '/includes/header.php';
     .testimonials-tag {
         display: inline-block;
         background: rgba(242,181,68,0.18);
-        color: #F2B544;
+        color: #d97706; /* Darker orange/amber for contrast */
         font-size: 0.72rem;
         font-weight: 700;
         letter-spacing: 0.16em;
@@ -606,387 +605,604 @@ include_once __DIR__ . '/includes/header.php';
         font-family: var(--font-heading);
         font-size: clamp(1.8rem, 3.5vw, 2.6rem);
         font-weight: 700;
-        color: #fff;
+        color: #0f1f45; /* Dark navy text */
         line-height: 1.25;
         margin-bottom: 14px;
     }
     .testimonials-title span { color: #F2B544; font-style: italic; }
     .testimonials-subtitle {
-        color: rgba(255,255,255,0.65);
+        color: #4b5563; /* Darker gray for readability on beige */
         font-size: 1rem;
         max-width: 480px;
         margin: 0 auto;
         line-height: 1.7;
     }
 
-    /* Grid */
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 28px;
+    /* ── Carousel outer ── */
+    .testi-carousel-outer {
         position: relative;
         z-index: 1;
     }
-    @media (max-width: 991px) {
-        .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-carousel-outer::before,
+    .testi-carousel-outer::after {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0;
+        width: 120px;
+        z-index: 3;
+        pointer-events: none;
     }
-    @media (max-width: 600px) {
-        .testimonials-grid { grid-template-columns: 1fr; }
+    .testi-carousel-outer::before {
+        left: 0;
+        background: linear-gradient(to right, #E8DCCB 0%, transparent 100%);
+    }
+    .testi-carousel-outer::after {
+        right: 0;
+        background: linear-gradient(to left, #E8DCCB 0%, transparent 100%);
     }
 
-    /* Card */
-    .testi-card {
-        background: rgba(255,255,255,0.07);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        border: 1px solid rgba(255,255,255,0.13);
-        border-top: 1px solid rgba(255,255,255,0.28);
-        border-left: 1px solid rgba(255,255,255,0.28);
+    /* Scrollable track */
+    .testi-track-wrapper {
+        overflow: hidden;
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    .testi-track-wrapper:active { cursor: grabbing; }
+
+    .testi-track {
+        display: flex;
+        gap: 24px;
+        padding: 16px 4px 28px;
+        will-change: transform;
+        transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .testi-track.no-transition { transition: none !important; }
+
+    /* ── Individual Card — horizontal layout ── */
+    .tc {
+        background: rgba(255,255,255,0.45); /* Light glass */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.7);
+        border-top: 1px solid rgba(255,255,255,0.9);
+        border-left: 1px solid rgba(255,255,255,0.8);
         border-radius: 20px;
-        padding: 36px 32px;
+        padding: 30px 32px;
+        min-width: 380px;
+        max-width: 380px;
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
-        cursor: default;
+        gap: 18px;
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
     }
-    .testi-card:hover {
-        transform: translateY(-8px);
-        background: rgba(255,255,255,0.12);
-        box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+    .tc::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent 0%, rgba(242,181,68,0.7) 50%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.35s ease;
     }
+    .tc:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 22px 50px rgba(0,0,0,0.12);
+        border-color: rgba(242,181,68,0.4);
+    }
+    .tc:hover::after { opacity: 1; }
 
-    /* Featured card accent */
-    .testi-card.featured {
-        border-color: rgba(242,181,68,0.45);
-        border-top-color: rgba(242,181,68,0.7);
-        border-left-color: rgba(242,181,68,0.7);
-        background: rgba(242,181,68,0.08);
+    /* Author row */
+    .tc-author-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
     }
-    .testi-card.featured:hover {
-        background: rgba(242,181,68,0.14);
-        box-shadow: 0 24px 48px rgba(242,181,68,0.15);
-    }
-
-    /* Quote icon */
-    .testi-quote-icon {
-        width: 44px;
-        height: 44px;
-        background: rgba(242,181,68,0.2);
-        border-radius: 12px;
+    .tc-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #F2B544;
+        font-weight: 800;
+        font-size: 1rem;
         flex-shrink: 0;
+        letter-spacing: 0.5px;
+        border: 2px solid rgba(255,255,255,0.6);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+    .tc-author-info { flex: 1; min-width: 0; }
+    .tc-name {
+        color: #0f1f45;
+        font-weight: 700;
+        font-size: 0.97rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 3px;
+    }
+    .tc-role {
+        color: #4b5563;
+        font-size: 0.77rem;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .tc-big-quote {
+        font-size: 4rem;
+        line-height: 0.8;
+        color: rgba(242,181,68,0.5);
+        font-family: Georgia, 'Times New Roman', serif;
+        margin-left: auto;
+        align-self: flex-start;
+        flex-shrink: 0;
+        padding-top: 4px;
     }
 
     /* Stars */
-    .testi-stars {
-        display: flex;
-        gap: 4px;
-    }
-    .testi-stars svg { color: #F2B544; }
+    .tc-stars { display: flex; gap: 3px; }
+    .tc-stars svg { color: #F2B544; }
 
     /* Review text */
-    .testi-text {
-        color: rgba(255,255,255,0.82);
-        font-size: 0.96rem;
+    .tc-text {
+        color: #333;
+        font-size: 0.92rem;
         line-height: 1.75;
         font-style: italic;
         flex: 1;
     }
 
-    /* Divider */
-    .testi-divider {
-        height: 1px;
-        background: linear-gradient(to right, rgba(255,255,255,0.15), transparent);
-        margin: 0 -4px;
-    }
-
-    /* Avatar + author info */
-    .testi-author {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-    }
-    .testi-avatar {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 1.1rem;
-        flex-shrink: 0;
-        letter-spacing: 0.5px;
-    }
-    .testi-author-info { flex: 1; }
-    .testi-author-name {
-        color: #fff;
-        font-weight: 700;
-        font-size: 0.95rem;
-        margin-bottom: 2px;
-    }
-    .testi-author-location {
-        color: rgba(255,255,255,0.5);
-        font-size: 0.8rem;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    /* Badge (e.g. "Verified Traveler") */
-    .testi-badge {
+    /* Bottom tag */
+    .tc-tag {
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        background: rgba(242,181,68,0.15);
-        color: #F2B544;
-        font-size: 0.7rem;
+        background: rgba(242,181,68,0.2);
+        color: #d97706;
+        font-size: 0.67rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 4px 10px;
+        padding: 4px 11px;
         border-radius: 999px;
         border: 1px solid rgba(242,181,68,0.3);
-        white-space: nowrap;
+        width: fit-content;
+    }
+
+    /* ── Controls ── */
+    .testi-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 42px;
+        position: relative;
+        z-index: 1;
+    }
+    .testi-btn {
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        border: 1px solid #d1d5db;
+        background: #fff;
+        color: #0f1f45;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        flex-shrink: 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .testi-btn:hover {
+        background: #F2B544;
+        border-color: #F2B544;
+        color: #fff;
+        transform: scale(1.1);
+    }
+    .testi-dots { display: flex; gap: 8px; align-items: center; }
+    .testi-dot {
+        width: 8px; height: 8px;
+        border-radius: 999px;
+        background: rgba(0,0,0,0.15);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.32s ease;
+    }
+    .testi-dot.active { width: 30px; background: #0f1f45; }
+
+    /* Progress bar */
+    .testi-progress {
+        position: absolute;
+        bottom: 0; left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0f1f45, #1a3270);
+        border-radius: 3px;
+        width: 0%;
+        z-index: 2;
+        transition: width 0.12s linear;
+    }
+
+    /* ── Stats bar ── */
+    .testi-stats {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: nowrap;
+        margin-top: 56px;
+        padding: 30px 40px;
+        background: rgba(255,255,255,0.45);
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.7);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        width: max-content;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        z-index: 1;
+    }
+    .testi-stat { text-align: center; }
+    .testi-stat-num {
+        font-size: 2.1rem;
+        font-weight: 800;
+        color: #0f1f45;
+        line-height: 1;
+        font-family: var(--font-heading);
+    }
+    .testi-stat-lbl {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+        color: #4b5563;
+        margin-top: 6px;
+    }
+    .testi-stat-sep {
+        width: 1px; height: 48px;
+        background: rgba(0,0,0,0.1);
+    }
+    @media (max-width: 640px) {
+        .tc { min-width: 290px; max-width: 290px; padding: 22px 20px; }
+        .testi-carousel-outer::before,
+        .testi-carousel-outer::after { width: 40px; }
+        .testi-stats { gap: 18px; padding: 22px 18px; }
+        .testi-stat-sep { display: none; }
     }
 </style>
 
 <section class="testimonials-section" id="testimonials">
-    <div class="container" style="max-width: 1100px;">
+    <div class="container" style="max-width:1200px;">
 
-        <!-- Header -->
         <div class="testimonials-header">
             <span class="testimonials-tag">★ What Travelers Say</span>
             <h2 class="testimonials-title">Real Stories from<br><span>Happy Travelers</span></h2>
             <p class="testimonials-subtitle">Hundreds of guests have experienced the magic of Sri Lanka with us. Here's what a few of them had to share.</p>
         </div>
 
-        <!-- Cards Grid -->
-        <div class="testimonials-grid">
+        <div class="testi-carousel-outer">
+            <div class="testi-track-wrapper" id="tcWrapper">
+                <div class="testi-track" id="tcTrack">
 
-            <!-- Card 1 — Featured -->
-            <div class="testi-card featured">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <div class="testi-quote-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
-                    </div>
-                    <span class="testi-badge">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        Verified Traveler
-                    </span>
-                </div>
-                <div class="testi-stars">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <p class="testi-text">"Absolutely the most extraordinary travel experience of our lives. Maha Lanka Tours took care of every detail — from the luxury villa overlooking the ocean to the private sunrise climb up Sigiriya. Our guide felt like a dear friend by the end."</p>
-                <div class="testi-divider"></div>
-                <div class="testi-author">
-                    <div class="testi-avatar" style="background: linear-gradient(135deg, #F2B544, #e09030); color: #0f1f45;">JM</div>
-                    <div class="testi-author-info">
-                        <div class="testi-author-name">James & Mia Carter</div>
-                        <div class="testi-author-location">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            London, United Kingdom
+                    <!-- Card 1 -->
+                    <div class="tc">
+                        <div class="tc-author-row">
+                            <div class="tc-avatar" style="background:linear-gradient(135deg,#F2B544,#e09030);color:#0f1f45;">JM</div>
+                            <div class="tc-author-info">
+                                <div class="tc-name">James &amp; Mia Carter</div>
+                                <div class="tc-role"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>London, United Kingdom</div>
+                            </div>
+                            <span class="tc-big-quote">"</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="testi-card">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <div class="testi-quote-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
-                    </div>
-                    <span class="testi-badge">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        Verified Traveler
-                    </span>
-                </div>
-                <div class="testi-stars">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <p class="testi-text">"We saw blue whales in the wild, sipped champagne at a tea estate with panoramic views, and stayed in a boutique eco-villa — all perfectly arranged. The itinerary was 100% private, exactly as promised. Truly unforgettable."</p>
-                <div class="testi-divider"></div>
-                <div class="testi-author">
-                    <div class="testi-avatar" style="background: linear-gradient(135deg, #2E4F9E, #1a3270); color: #fff;">SC</div>
-                    <div class="testi-author-info">
-                        <div class="testi-author-name">Sophie & Chris Müller</div>
-                        <div class="testi-author-location">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Berlin, Germany
+                        <div class="tc-stars">
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                         </div>
+                        <p class="tc-text">Absolutely the most extraordinary travel experience of our lives. Maha Lanka Tours took care of every detail — from the luxury villa overlooking the ocean to the private sunrise climb up Sigiriya. Our guide felt like a dear friend by the end.</p>
+                        <span class="tc-tag"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Verified Traveler</span>
                     </div>
-                </div>
-            </div>
 
-            <!-- Card 3 -->
-            <div class="testi-card">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <div class="testi-quote-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
-                    </div>
-                    <span class="testi-badge">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        Verified Traveler
-                    </span>
-                </div>
-                <div class="testi-stars">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <p class="testi-text">"The Yala leopard safari was breathtaking — we spotted three leopards within the first hour! Our guide's knowledge of local wildlife was remarkable. I also loved the seamless hotel arrangements and the warm hospitality throughout."</p>
-                <div class="testi-divider"></div>
-                <div class="testi-author">
-                    <div class="testi-avatar" style="background: linear-gradient(135deg, #2da87e, #1e7a5c); color: #fff;">AN</div>
-                    <div class="testi-author-info">
-                        <div class="testi-author-name">Anya Novikova</div>
-                        <div class="testi-author-location">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Sydney, Australia
+                    <!-- Card 2 -->
+                    <div class="tc">
+                        <div class="tc-author-row">
+                            <div class="tc-avatar" style="background:linear-gradient(135deg,#2E4F9E,#1a3270);color:#fff;">SC</div>
+                            <div class="tc-author-info">
+                                <div class="tc-name">Sophie &amp; Chris Müller</div>
+                                <div class="tc-role"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Berlin, Germany</div>
+                            </div>
+                            <span class="tc-big-quote">"</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="testi-card">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <div class="testi-quote-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
-                    </div>
-                    <span class="testi-badge">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        Verified Traveler
-                    </span>
-                </div>
-                <div class="testi-stars">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <p class="testi-text">"Planning from Canada was seamless — Maha Lanka's team responded within hours every time. The Kandy cultural show, Temple of the Tooth visit, and whale-watching boat trip were highlights I'll cherish forever."</p>
-                <div class="testi-divider"></div>
-                <div class="testi-author">
-                    <div class="testi-avatar" style="background: linear-gradient(135deg, #9b59b6, #6c3483); color: #fff;">DP</div>
-                    <div class="testi-author-info">
-                        <div class="testi-author-name">David & Priya Osei</div>
-                        <div class="testi-author-location">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Toronto, Canada
+                        <div class="tc-stars">
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                         </div>
+                        <p class="tc-text">We saw blue whales in the wild, sipped champagne at a tea estate with panoramic views, and stayed in a boutique eco-villa — all perfectly arranged. The itinerary was 100% private, exactly as promised. Truly unforgettable.</p>
+                        <span class="tc-tag"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Verified Traveler</span>
                     </div>
-                </div>
-            </div>
 
-            <!-- Card 5 -->
-            <div class="testi-card">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <div class="testi-quote-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
-                    </div>
-                    <span class="testi-badge">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        Verified Traveler
-                    </span>
-                </div>
-                <div class="testi-stars">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <p class="testi-text">"I travelled solo for two weeks and felt completely safe and cared for the entire time. The luxury tuk-tuk tour through Galle Fort, the stilt fishermen at sunrise — Maha Lanka curated magic moments I never would have found alone."</p>
-                <div class="testi-divider"></div>
-                <div class="testi-author">
-                    <div class="testi-avatar" style="background: linear-gradient(135deg, #e84393, #c0265a); color: #fff;">LT</div>
-                    <div class="testi-author-info">
-                        <div class="testi-author-name">Léa Tremblay</div>
-                        <div class="testi-author-location">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Paris, France
+                    <!-- Card 3 -->
+                    <div class="tc">
+                        <div class="tc-author-row">
+                            <div class="tc-avatar" style="background:linear-gradient(135deg,#2da87e,#1e7a5c);color:#fff;">AN</div>
+                            <div class="tc-author-info">
+                                <div class="tc-name">Anya Novikova</div>
+                                <div class="tc-role"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Sydney, Australia</div>
+                            </div>
+                            <span class="tc-big-quote">"</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="testi-card">
-                <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <div class="testi-quote-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
-                    </div>
-                    <span class="testi-badge">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        Verified Traveler
-                    </span>
-                </div>
-                <div class="testi-stars">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <p class="testi-text">"From the Nine Arch Bridge train ride to surfing lessons in Arugam Bay, every day was a new adventure. The team remembered small details we mentioned months ago — a welcome fruit basket, our favourite Ceylon tea flavour. Remarkable attention."</p>
-                <div class="testi-divider"></div>
-                <div class="testi-author">
-                    <div class="testi-avatar" style="background: linear-gradient(135deg, #f37a27, #c0540a); color: #fff;">RK</div>
-                    <div class="testi-author-info">
-                        <div class="testi-author-name">Ravi & Kamala Sharma</div>
-                        <div class="testi-author-location">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Mumbai, India
+                        <div class="tc-stars">
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                         </div>
+                        <p class="tc-text">The Yala leopard safari was breathtaking — we spotted three leopards within the first hour! Our guide's knowledge of local wildlife was remarkable. I also loved the seamless hotel arrangements and the warm hospitality throughout.</p>
+                        <span class="tc-tag"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Verified Traveler</span>
                     </div>
-                </div>
-            </div>
 
-        </div><!-- /.testimonials-grid -->
+                    <!-- Card 4 -->
+                    <div class="tc">
+                        <div class="tc-author-row">
+                            <div class="tc-avatar" style="background:linear-gradient(135deg,#9b59b6,#6c3483);color:#fff;">DP</div>
+                            <div class="tc-author-info">
+                                <div class="tc-name">David &amp; Priya Osei</div>
+                                <div class="tc-role"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Toronto, Canada</div>
+                            </div>
+                            <span class="tc-big-quote">"</span>
+                        </div>
+                        <div class="tc-stars">
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </div>
+                        <p class="tc-text">Planning from Canada was seamless — Maha Lanka's team responded within hours every time. The Kandy cultural show, Temple of the Tooth visit, and whale-watching boat trip were highlights I'll cherish forever.</p>
+                        <span class="tc-tag"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Verified Traveler</span>
+                    </div>
 
-        <!-- Summary row -->
-        <div style="display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; margin-top:56px; position:relative; z-index:1;">
-            <div style="text-align:center;">
-                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">500+</div>
-                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Happy Travelers</div>
-            </div>
-            <div style="width:1px; height:52px; background:rgba(255,255,255,0.15);"></div>
-            <div style="text-align:center;">
-                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">4.9★</div>
-                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Average Rating</div>
-            </div>
-            <div style="width:1px; height:52px; background:rgba(255,255,255,0.15);"></div>
-            <div style="text-align:center;">
-                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">12+</div>
-                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Years of Trust</div>
-            </div>
-            <div style="width:1px; height:52px; background:rgba(255,255,255,0.15);"></div>
-            <div style="text-align:center;">
-                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">30+</div>
-                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Countries Represented</div>
-            </div>
+                    <!-- Card 5 -->
+                    <div class="tc">
+                        <div class="tc-author-row">
+                            <div class="tc-avatar" style="background:linear-gradient(135deg,#e84393,#c0265a);color:#fff;">LT</div>
+                            <div class="tc-author-info">
+                                <div class="tc-name">Léa Tremblay</div>
+                                <div class="tc-role"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Paris, France</div>
+                            </div>
+                            <span class="tc-big-quote">"</span>
+                        </div>
+                        <div class="tc-stars">
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </div>
+                        <p class="tc-text">I travelled solo for two weeks and felt completely safe and cared for the entire time. The luxury tuk-tuk tour through Galle Fort, the stilt fishermen at sunrise — Maha Lanka curated magic moments I never would have found alone.</p>
+                        <span class="tc-tag"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Verified Traveler</span>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="tc">
+                        <div class="tc-author-row">
+                            <div class="tc-avatar" style="background:linear-gradient(135deg,#f37a27,#c0540a);color:#fff;">RK</div>
+                            <div class="tc-author-info">
+                                <div class="tc-name">Ravi &amp; Kamala Sharma</div>
+                                <div class="tc-role"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mumbai, India</div>
+                            </div>
+                            <span class="tc-big-quote">"</span>
+                        </div>
+                        <div class="tc-stars">
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </div>
+                        <p class="tc-text">From the Nine Arch Bridge train ride to surfing lessons in Arugam Bay, every day was a new adventure. The team remembered small details we mentioned months ago — a welcome fruit basket, our favourite Ceylon tea. Remarkable attention.</p>
+                        <span class="tc-tag"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Verified Traveler</span>
+                    </div>
+
+                </div><!-- /.testi-track -->
+            </div><!-- /.testi-track-wrapper -->
+            <div class="testi-progress" id="tcProgress"></div>
+        </div><!-- /.testi-carousel-outer -->
+
+        <!-- Controls -->
+        <div class="testi-controls">
+            <button class="testi-btn" id="tcPrev" aria-label="Previous testimonial">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="testi-dots" id="tcDots"></div>
+            <button class="testi-btn" id="tcNext" aria-label="Next testimonial">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="testi-stats">
+            <div class="testi-stat"><div class="testi-stat-num">500+</div><div class="testi-stat-lbl">Happy Travelers</div></div>
+            <div class="testi-stat-sep"></div>
+            <div class="testi-stat"><div class="testi-stat-num">4.9★</div><div class="testi-stat-lbl">Average Rating</div></div>
+            <div class="testi-stat-sep"></div>
+            <div class="testi-stat"><div class="testi-stat-num">12+</div><div class="testi-stat-lbl">Years of Trust</div></div>
+            <div class="testi-stat-sep"></div>
+            <div class="testi-stat"><div class="testi-stat-num">30+</div><div class="testi-stat-lbl">Countries</div></div>
         </div>
 
     </div>
 </section>
+
+<script>
+(function () {
+    'use strict';
+    var track    = document.getElementById('tcTrack');
+    var wrapper  = document.getElementById('tcWrapper');
+    var dotsEl   = document.getElementById('tcDots');
+    var btnPrev  = document.getElementById('tcPrev');
+    var btnNext  = document.getElementById('tcNext');
+    var progEl   = document.getElementById('tcProgress');
+
+    var VISIBLE   = 3;      // cards shown at once
+    var GAP       = 24;     // px
+    var INTERVAL  = 4200;   // ms auto-advance
+    var STEPS     = 60;     // progress-bar ticks
+
+    var origCards = Array.from(track.children);
+    var total     = origCards.length;
+
+    // Infinite clones
+    origCards.slice(-VISIBLE).forEach(function(c){ track.insertBefore(c.cloneNode(true), track.firstChild); });
+    origCards.slice(0, VISIBLE).forEach(function(c){ track.appendChild(c.cloneNode(true)); });
+
+    var idx = 0;          // current real index
+    var busy = false;
+    var autoTmr, progTmr, progPct = 0;
+
+    function cw() {
+        var c = track.querySelector('.tc');
+        return c ? c.offsetWidth + GAP : 0;
+    }
+    function offset(i) { return (VISIBLE + i) * cw(); }
+
+    /* Dots */
+    function makeDots() {
+        dotsEl.innerHTML = '';
+        for (var i = 0; i < total; i++) {
+            var d = document.createElement('button');
+            d.className = 'testi-dot' + (i === 0 ? ' active' : '');
+            d.setAttribute('aria-label', 'Testimonial ' + (i+1));
+            (function(n){ d.addEventListener('click', function(){ stopAuto(); goTo(n); startAuto(); }); })(i);
+            dotsEl.appendChild(d);
+        }
+    }
+    function syncDots() {
+        var dots = dotsEl.querySelectorAll('.testi-dot');
+        dots.forEach(function(d,i){ d.classList.toggle('active', i === idx); });
+    }
+
+    /* Navigate */
+    function goTo(i, animate) {
+        if (busy) return;
+        busy = true;
+        if (animate === false) {
+            track.classList.add('no-transition');
+        } else {
+            track.classList.remove('no-transition');
+        }
+        idx = ((i % total) + total) % total;
+        track.style.transform = 'translateX(-' + offset(idx) + 'px)';
+        syncDots();
+        resetProg();
+        setTimeout(function(){ busy = false; }, 700);
+    }
+
+    /* After transition, silent-jump if we've gone past the real cards via clones */
+    track.addEventListener('transitionend', function() {
+        /* wrapped already by modulo, nothing needed */
+    });
+
+    function next(){ goTo(idx + 1); }
+    function prev(){ goTo(idx - 1); }
+
+    /* Auto */
+    function startAuto() {
+        clearInterval(autoTmr);
+        autoTmr = setInterval(next, INTERVAL);
+    }
+    function stopAuto() {
+        clearInterval(autoTmr);
+        clearInterval(progTmr);
+    }
+
+    /* Progress bar */
+    function resetProg() {
+        clearInterval(progTmr);
+        progPct = 0;
+        progEl.style.width = '0%';
+        var step = 100 / STEPS;
+        var ms   = INTERVAL / STEPS;
+        progTmr = setInterval(function(){
+            progPct = Math.min(progPct + step, 100);
+            progEl.style.width = progPct + '%';
+        }, ms);
+    }
+
+    /* Drag */
+    var dx = 0, dragging = false, startX = 0;
+    wrapper.addEventListener('mousedown', function(e){
+        dragging = true; startX = e.clientX; dx = 0;
+        stopAuto(); track.classList.add('no-transition');
+    });
+    window.addEventListener('mousemove', function(e){
+        if (!dragging) return;
+        dx = e.clientX - startX;
+        track.style.transform = 'translateX(-' + (offset(idx) - dx) + 'px)';
+    });
+    window.addEventListener('mouseup', function(){
+        if (!dragging) return;
+        dragging = false;
+        track.classList.remove('no-transition');
+        if (Math.abs(dx) > 60) { dx < 0 ? next() : prev(); }
+        else { track.style.transform = 'translateX(-' + offset(idx) + 'px)'; }
+        dx = 0; startAuto(); resetProg();
+    });
+
+    /* Touch */
+    var tx = 0;
+    wrapper.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; stopAuto(); }, {passive:true});
+    wrapper.addEventListener('touchend',   function(e){
+        var delta = e.changedTouches[0].clientX - tx;
+        if (Math.abs(delta) > 48) { delta < 0 ? next() : prev(); }
+        startAuto(); resetProg();
+    }, {passive:true});
+
+    /* Buttons */
+    btnPrev.addEventListener('click', function(){ stopAuto(); prev(); startAuto(); });
+    btnNext.addEventListener('click', function(){ stopAuto(); next(); startAuto(); });
+
+    /* Pause on hover */
+    wrapper.addEventListener('mouseenter', stopAuto);
+    wrapper.addEventListener('mouseleave', function(){ startAuto(); resetProg(); });
+
+    /* Init */
+    makeDots();
+    track.classList.add('no-transition');
+    track.style.transform = 'translateX(-' + offset(0) + 'px)';
+    requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+            track.classList.remove('no-transition');
+            startAuto();
+            resetProg();
+        });
+    });
+
+    /* Recalc on resize */
+    var resizeTmr;
+    window.addEventListener('resize', function(){
+        clearTimeout(resizeTmr);
+        resizeTmr = setTimeout(function(){
+            track.classList.add('no-transition');
+            track.style.transform = 'translateX(-' + offset(idx) + 'px)';
+            setTimeout(function(){ track.classList.remove('no-transition'); }, 50);
+        }, 150);
+    });
+})();
+</script>
 
 <!-- ═══════════════ CTA BANNER ═══════════════ -->
 <section class="dest-cta-section">
