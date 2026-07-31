@@ -555,6 +555,439 @@ include_once __DIR__ . '/includes/header.php';
     </div>
 </section>
 
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<style>
+    /* ── Testimonials Section ─────────────────────────── */
+    .testimonials-section {
+        padding: 100px 0;
+        background: linear-gradient(160deg, #0f1f45 0%, #1a3270 50%, #0f1f45 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .testimonials-section::before {
+        content: '';
+        position: absolute;
+        top: -200px; right: -200px;
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(242,181,68,0.08) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    .testimonials-section::after {
+        content: '';
+        position: absolute;
+        bottom: -150px; left: -150px;
+        width: 450px; height: 450px;
+        background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .testimonials-header {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 1;
+    }
+    .testimonials-tag {
+        display: inline-block;
+        background: rgba(242,181,68,0.18);
+        color: #F2B544;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 6px 18px;
+        border-radius: 999px;
+        margin-bottom: 16px;
+        border: 1px solid rgba(242,181,68,0.3);
+    }
+    .testimonials-title {
+        font-family: var(--font-heading);
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 14px;
+    }
+    .testimonials-title span { color: #F2B544; font-style: italic; }
+    .testimonials-subtitle {
+        color: rgba(255,255,255,0.65);
+        font-size: 1rem;
+        max-width: 480px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    /* Grid */
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        position: relative;
+        z-index: 1;
+    }
+    @media (max-width: 991px) {
+        .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+        .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Card */
+    .testi-card {
+        background: rgba(255,255,255,0.07);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(255,255,255,0.13);
+        border-top: 1px solid rgba(255,255,255,0.28);
+        border-left: 1px solid rgba(255,255,255,0.28);
+        border-radius: 20px;
+        padding: 36px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+        cursor: default;
+    }
+    .testi-card:hover {
+        transform: translateY(-8px);
+        background: rgba(255,255,255,0.12);
+        box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+    }
+
+    /* Featured card accent */
+    .testi-card.featured {
+        border-color: rgba(242,181,68,0.45);
+        border-top-color: rgba(242,181,68,0.7);
+        border-left-color: rgba(242,181,68,0.7);
+        background: rgba(242,181,68,0.08);
+    }
+    .testi-card.featured:hover {
+        background: rgba(242,181,68,0.14);
+        box-shadow: 0 24px 48px rgba(242,181,68,0.15);
+    }
+
+    /* Quote icon */
+    .testi-quote-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(242,181,68,0.2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #F2B544;
+        flex-shrink: 0;
+    }
+
+    /* Stars */
+    .testi-stars {
+        display: flex;
+        gap: 4px;
+    }
+    .testi-stars svg { color: #F2B544; }
+
+    /* Review text */
+    .testi-text {
+        color: rgba(255,255,255,0.82);
+        font-size: 0.96rem;
+        line-height: 1.75;
+        font-style: italic;
+        flex: 1;
+    }
+
+    /* Divider */
+    .testi-divider {
+        height: 1px;
+        background: linear-gradient(to right, rgba(255,255,255,0.15), transparent);
+        margin: 0 -4px;
+    }
+
+    /* Avatar + author info */
+    .testi-author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .testi-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        letter-spacing: 0.5px;
+    }
+    .testi-author-info { flex: 1; }
+    .testi-author-name {
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+    }
+    .testi-author-location {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* Badge (e.g. "Verified Traveler") */
+    .testi-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(242,181,68,0.15);
+        color: #F2B544;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(242,181,68,0.3);
+        white-space: nowrap;
+    }
+</style>
+
+<section class="testimonials-section" id="testimonials">
+    <div class="container" style="max-width: 1100px;">
+
+        <!-- Header -->
+        <div class="testimonials-header">
+            <span class="testimonials-tag">★ What Travelers Say</span>
+            <h2 class="testimonials-title">Real Stories from<br><span>Happy Travelers</span></h2>
+            <p class="testimonials-subtitle">Hundreds of guests have experienced the magic of Sri Lanka with us. Here's what a few of them had to share.</p>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="testimonials-grid">
+
+            <!-- Card 1 — Featured -->
+            <div class="testi-card featured">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div class="testi-quote-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
+                    </div>
+                    <span class="testi-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Verified Traveler
+                    </span>
+                </div>
+                <div class="testi-stars">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="testi-text">"Absolutely the most extraordinary travel experience of our lives. Maha Lanka Tours took care of every detail — from the luxury villa overlooking the ocean to the private sunrise climb up Sigiriya. Our guide felt like a dear friend by the end."</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #F2B544, #e09030); color: #0f1f45;">JM</div>
+                    <div class="testi-author-info">
+                        <div class="testi-author-name">James & Mia Carter</div>
+                        <div class="testi-author-location">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            London, United Kingdom
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="testi-card">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div class="testi-quote-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
+                    </div>
+                    <span class="testi-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Verified Traveler
+                    </span>
+                </div>
+                <div class="testi-stars">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="testi-text">"We saw blue whales in the wild, sipped champagne at a tea estate with panoramic views, and stayed in a boutique eco-villa — all perfectly arranged. The itinerary was 100% private, exactly as promised. Truly unforgettable."</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #2E4F9E, #1a3270); color: #fff;">SC</div>
+                    <div class="testi-author-info">
+                        <div class="testi-author-name">Sophie & Chris Müller</div>
+                        <div class="testi-author-location">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Berlin, Germany
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="testi-card">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div class="testi-quote-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
+                    </div>
+                    <span class="testi-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Verified Traveler
+                    </span>
+                </div>
+                <div class="testi-stars">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="testi-text">"The Yala leopard safari was breathtaking — we spotted three leopards within the first hour! Our guide's knowledge of local wildlife was remarkable. I also loved the seamless hotel arrangements and the warm hospitality throughout."</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #2da87e, #1e7a5c); color: #fff;">AN</div>
+                    <div class="testi-author-info">
+                        <div class="testi-author-name">Anya Novikova</div>
+                        <div class="testi-author-location">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Sydney, Australia
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="testi-card">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div class="testi-quote-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
+                    </div>
+                    <span class="testi-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Verified Traveler
+                    </span>
+                </div>
+                <div class="testi-stars">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="testi-text">"Planning from Canada was seamless — Maha Lanka's team responded within hours every time. The Kandy cultural show, Temple of the Tooth visit, and whale-watching boat trip were highlights I'll cherish forever."</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #9b59b6, #6c3483); color: #fff;">DP</div>
+                    <div class="testi-author-info">
+                        <div class="testi-author-name">David & Priya Osei</div>
+                        <div class="testi-author-location">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Toronto, Canada
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="testi-card">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div class="testi-quote-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
+                    </div>
+                    <span class="testi-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Verified Traveler
+                    </span>
+                </div>
+                <div class="testi-stars">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="testi-text">"I travelled solo for two weeks and felt completely safe and cared for the entire time. The luxury tuk-tuk tour through Galle Fort, the stilt fishermen at sunrise — Maha Lanka curated magic moments I never would have found alone."</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #e84393, #c0265a); color: #fff;">LT</div>
+                    <div class="testi-author-info">
+                        <div class="testi-author-name">Léa Tremblay</div>
+                        <div class="testi-author-location">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Paris, France
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="testi-card">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div class="testi-quote-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.76-3 .66-1.06 1.63-1.9 2.91-2.52L9.088 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.524-.91.64-.608.96-1.385.96-2.328zm8.808 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.07-.13-1.54-.022-.16-.953.1-1.953.76-3.002.66-1.06 1.63-1.9 2.91-2.52L17.896 5c-1.512.6-2.8 1.535-3.87 2.804-1.07 1.274-1.604 2.695-1.604 4.267 0 1.69.52 3.016 1.565 3.975 1.043.96 2.3 1.44 3.774 1.44 1.043 0 1.885-.304 2.523-.91.64-.608.96-1.385.96-2.328z"/></svg>
+                    </div>
+                    <span class="testi-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Verified Traveler
+                    </span>
+                </div>
+                <div class="testi-stars">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <p class="testi-text">"From the Nine Arch Bridge train ride to surfing lessons in Arugam Bay, every day was a new adventure. The team remembered small details we mentioned months ago — a welcome fruit basket, our favourite Ceylon tea flavour. Remarkable attention."</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #f37a27, #c0540a); color: #fff;">RK</div>
+                    <div class="testi-author-info">
+                        <div class="testi-author-name">Ravi & Kamala Sharma</div>
+                        <div class="testi-author-location">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Mumbai, India
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.testimonials-grid -->
+
+        <!-- Summary row -->
+        <div style="display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; margin-top:56px; position:relative; z-index:1;">
+            <div style="text-align:center;">
+                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">500+</div>
+                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Happy Travelers</div>
+            </div>
+            <div style="width:1px; height:52px; background:rgba(255,255,255,0.15);"></div>
+            <div style="text-align:center;">
+                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">4.9★</div>
+                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Average Rating</div>
+            </div>
+            <div style="width:1px; height:52px; background:rgba(255,255,255,0.15);"></div>
+            <div style="text-align:center;">
+                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">12+</div>
+                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Years of Trust</div>
+            </div>
+            <div style="width:1px; height:52px; background:rgba(255,255,255,0.15);"></div>
+            <div style="text-align:center;">
+                <div style="font-size:2.4rem; font-weight:700; color:#F2B544; line-height:1;">30+</div>
+                <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.55); margin-top:4px;">Countries Represented</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!-- ═══════════════ CTA BANNER ═══════════════ -->
 <section class="dest-cta-section">
     <div class="dest-cta-bg-slider">
