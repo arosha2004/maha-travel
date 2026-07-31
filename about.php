@@ -94,10 +94,15 @@ include_once __DIR__ . '/includes/header.php';
     }
 
     .info-card {
-        background: #fff;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.6);
+        border-left: 1px solid rgba(255, 255, 255, 0.6);
         padding: 40px 30px;
         border-radius: var(--radius-md);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         text-align: center;
         transition: var(--transition);
         display: flex;
@@ -107,7 +112,8 @@ include_once __DIR__ . '/includes/header.php';
 
     .info-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 0.25);
     }
 
     .card-icon-wrapper {
