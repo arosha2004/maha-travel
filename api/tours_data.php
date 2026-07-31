@@ -183,6 +183,42 @@ function get_all_tours() {
                 ['day' => 8, 'title' => 'VIP Farewell Transfer', 'desc' => 'Chauffeur luxury transfer to airport fast-track lounge.']
             ],
             'inclusions' => ['5-Star Luxury Private Pool Villa stays', 'Dedicated private butler & luxury Mercedes/SUV', 'Welcome champagne & romantic decor', 'All meals & spa treatments', 'Fast-track airport VIP service']
+        ],
+        [
+            'id' => 6,
+            'slug' => 'arugam-bay-surf-retreat',
+            'title' => 'Arugam Bay Surf & East Coast Retreat',
+            'subtitle' => 'World-class surfing, golden sands & coastal vibes',
+            'category' => 'Beach & Adventure',
+            'category_code' => 'beach',
+            'duration' => '6 Days / 5 Nights',
+            'days' => 6,
+            'price' => 780,
+            'rating' => 4.85,
+            'reviews_count' => 112,
+            'image' => 'images/hero_sri_lanka.png',
+            'gallery' => [
+                'images/hero_sri_lanka.png',
+                'images/mirissa_beach_whale.png'
+            ],
+            'region' => 'Eastern Coast',
+            'badge' => 'Trending',
+            'highlights' => [
+                'Surfing at Arugam Bay Main Point',
+                'Kumana National Park Wildlife Safari',
+                'Muhudu Maha Viharaya Ancient Temple',
+                'Lagoon Safari at Pottuvil',
+                'Beachfront Yoga & Wellness'
+            ],
+            'itinerary' => [
+                ['day' => 1, 'title' => 'Arrival & East Coast Journey', 'desc' => 'Scenic drive to the East Coast. Check-in to your beachfront eco-resort in Arugam Bay.'],
+                ['day' => 2, 'title' => 'Surf Lessons & Beach Relaxation', 'desc' => 'Morning surf session with expert instructors. Afternoon relaxing by the ocean or pool.'],
+                ['day' => 3, 'title' => 'Kumana National Park Safari', 'desc' => 'Jeep safari in Kumana to spot leopards, elephants, and rare bird species.'],
+                ['day' => 4, 'title' => 'Pottuvil Lagoon Safari & Ancient Temples', 'desc' => 'Explore the mangroves of Pottuvil Lagoon. Visit the historical Muhudu Maha Viharaya temple ruins.'],
+                ['day' => 5, 'title' => 'Free Day for Surfing or Yoga', 'desc' => 'Spend the day riding the waves or enjoying a guided yoga session on the beach.'],
+                ['day' => 6, 'title' => 'Departure', 'desc' => 'Transfer back to Colombo or the airport, ending your east coast adventure.']
+            ],
+            'inclusions' => ['Beachfront eco-resort accommodation', 'Professional surf lessons and board rental', 'Kumana safari jeep & tickets', 'Daily breakfast & dinner', 'Private AC transfers']
         ]
     ];
 }

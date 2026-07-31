@@ -400,6 +400,7 @@ include_once __DIR__ . '/includes/header.php';
     width: 400px; height: 400px;
     background: rgba(255,255,255,0.04);
     border-radius: 50%;
+    z-index: 1;
 }
 .dest-cta-section::after {
     content: '';
@@ -408,6 +409,39 @@ include_once __DIR__ . '/includes/header.php';
     width: 260px; height: 260px;
     background: rgba(255,255,255,0.04);
     border-radius: 50%;
+    z-index: 1;
+}
+.dest-cta-bg-slider {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+.dest-cta-bg-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeCtaSlider 20s infinite;
+}
+.dest-cta-bg-slide:nth-child(1) { animation-delay: 0s; background-image: url('images/hero_sri_lanka.png'); }
+.dest-cta-bg-slide:nth-child(2) { animation-delay: 5s; background-image: url('images/mirissa_beach_whale.png'); }
+.dest-cta-bg-slide:nth-child(3) { animation-delay: 10s; background-image: url('images/kandy_temple.png'); }
+.dest-cta-bg-slide:nth-child(4) { animation-delay: 15s; background-image: url('images/yala_leopard_safari.png'); }
+
+.dest-cta-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 0;
+}
+
+@keyframes fadeCtaSlider {
+    0%, 20% { opacity: 1; }
+    25%, 95% { opacity: 0; }
+    100% { opacity: 1; }
 }
 .dest-cta__tag {
     display: inline-block;
@@ -716,6 +750,13 @@ include_once __DIR__ . '/includes/header.php';
 
 <!-- ═══════════════ CTA BANNER ═══════════════ -->
 <section class="dest-cta-section">
+    <div class="dest-cta-bg-slider">
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-overlay"></div>
+    </div>
     <div class="dest-cta__tag">Plan Your Journey</div>
     <h2 class="dest-cta__title">
         Ready to Experience<br><span>Sri Lanka</span> Your Way?
