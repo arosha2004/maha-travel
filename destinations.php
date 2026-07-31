@@ -20,12 +20,23 @@ include_once __DIR__ . '/includes/header.php';
     width: 100%;
     height: 60vh;
     min-height: 400px;
-    background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80');
-    background-size: cover;
-    background-position: center;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
+}
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 1;
+}
+.hero-slide.active {
+    opacity: 1;
+    z-index: 1;
 }
 .hero-arrow {
     color: white;
@@ -555,16 +566,23 @@ include_once __DIR__ . '/includes/header.php';
 
 <!-- ═══════════════ ORIGINAL HERO SLIDER ═══════════════ -->
 <div class="hero-slider">
-    <div class="hero-arrow">&#10094;</div>
-    <div class="hero-dots">
-        <span class="hero-dot active"></span>
-        <span class="hero-dot"></span>
-        <span class="hero-dot"></span>
-        <span class="hero-dot"></span>
-        <span class="hero-dot"></span>
-        <span class="hero-dot"></span>
+    <div class="hero-slide active" style="background-image: url('images/hero_slider/sl_beach_1785484473920.png');"></div>
+    <div class="hero-slide" style="background-image: url('images/hero_slider/sl_sigiriya_1785484502740.png');"></div>
+    <div class="hero-slide" style="background-image: url('images/hero_slider/sl_surfing_1785484620786.png');"></div>
+    <div class="hero-slide" style="background-image: url('images/hero_slider/sl_tea_hills_1785484562387.png');"></div>
+    <div class="hero-slide" style="background-image: url('images/hero_slider/sl_temple_1785484590947.png');"></div>
+    <div class="hero-slide" style="background-image: url('images/hero_slider/sl_wildlife_1785484531553.png');"></div>
+
+    <div class="hero-arrow" id="heroPrev" style="position:relative; z-index:2;">&#10094;</div>
+    <div class="hero-dots" style="position:relative; z-index:2;">
+        <span class="hero-dot active" data-slide="0"></span>
+        <span class="hero-dot" data-slide="1"></span>
+        <span class="hero-dot" data-slide="2"></span>
+        <span class="hero-dot" data-slide="3"></span>
+        <span class="hero-dot" data-slide="4"></span>
+        <span class="hero-dot" data-slide="5"></span>
     </div>
-    <div class="hero-arrow">&#10095;</div>
+    <div class="hero-arrow" id="heroNext" style="position:relative; z-index:2;">&#10095;</div>
 </div>
 
 <!-- ═══════════════ ALL TOURS GRID ═══════════════ -->
@@ -760,6 +778,46 @@ include_once __DIR__ . '/includes/header.php';
 </div>
 
 <script>
+// ── Hero Slider Logic ──
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+let currentSlide = 0;
+let slideInterval;
+
+function showSlide(index) {
+    if (!slides.length) return;
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    
+    currentSlide = (index + slides.length) % slides.length;
+    
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
+
+if (document.getElementById('heroNext')) {
+    document.getElementById('heroNext').addEventListener('click', () => { nextSlide(); resetInterval(); });
+    document.getElementById('heroPrev').addEventListener('click', () => { prevSlide(); resetInterval(); });
+}
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showSlide(index);
+        resetInterval();
+    });
+});
+
+function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 5000);
+}
+if (slides.length) {
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
 // Tours data for Quick View
 const toursData = <?php echo json_encode(array_map(function($t) {
     return [
