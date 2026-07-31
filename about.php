@@ -111,6 +111,66 @@ include_once __DIR__ . '/includes/header.php';
         .hero-title {
             font-size: 3rem;
         }
+        .glass-stats-box {
+            flex-direction: column;
+            gap: 15px;
+            padding: 25px 0;
+            bottom: -50px;
+        }
+        .stat-divider {
+            width: 50%;
+            height: 1px;
+        }
+    }
+    
+    /* Glass Stats Box */
+    .glass-stats-box {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 3;
+        background: rgba(10, 18, 35, 0.55); /* Darker frosted glass */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg); /* Match image bottom corners */
+        display: flex;
+        align-items: center;
+        padding: 30px 0;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    
+    .stat-item {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+    }
+
+    .stat-num {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #F5A94E; /* Light warm orange */
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+
+    .stat-label {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.85); /* White labels for contrast */
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    .stat-divider {
+        width: 1px;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.15); /* Darker divider */
     }
 </style>
 
@@ -198,7 +258,25 @@ include_once __DIR__ . '/includes/header.php';
             </div>
             <div style="position: relative;">
                 <div style="position: absolute; top: -20px; right: -20px; bottom: 20px; left: 20px; background-color: var(--beige-sand); border-radius: var(--radius-lg); z-index: 1;"></div>
-                <img src="images/sri_lanka_tea_estate.png" alt="Maha Lanka Experience" style="position: relative; z-index: 2; border-radius: var(--radius-lg); box-shadow: var(--card-shadow); width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3;">
+                <img src="images/sri_lanka_tea_estate.png" alt="Maha Lanka Experience" style="position: relative; z-index: 2; border-radius: var(--radius-lg); box-shadow: var(--card-shadow); width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; display: block;">
+                
+                <!-- Glass Stats Box -->
+                <div class="glass-stats-box">
+                    <div class="stat-item">
+                        <span class="stat-num">12+</span>
+                        <span class="stat-label">Years Exp</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">500+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Tailor-Made</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
