@@ -27,7 +27,7 @@ if (!isset($current_page)) {
         <div class="container">
             <div class="header-wrapper">
                 <a href="index.php" class="brand-logo" style="gap: 12px; display: flex; align-items: center; text-decoration: none;">
-                    <img src="images/mlankalogo_transparent.png" alt="Maha Lanka Tours Logo" style="height: 50px; width: auto; transform: scale(1.6); transform-origin: left center;">
+                    <img src="images/mlankalogo_transparent.png" alt="Maha Lanka Tours Logo" style="height: 50px; width: auto; transform: scale(2.2); transform-origin: left center;">
                 </a>
 
                 <nav class="nav-menu">

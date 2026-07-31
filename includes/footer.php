@@ -5,8 +5,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col" style="padding-right: 20px;">
-                    <a href="index.php" class="brand-logo" style="margin-bottom: 30px; display: inline-block;">
-                        <img src="images/mlankalogo_transparent.png" alt="Maha Lanka Tours Logo" style="height: 60px; width: auto; transform: scale(1.6); transform-origin: left center;">
+                    <a href="index.php" class="brand-logo" style="margin-bottom: -20px; display: inline-block;">
+                        <img src="images/mlankalogo_transparent.png" alt="Maha Lanka Tours Logo" style="height: 60px; width: auto; transform: scale(2.4); transform-origin: left center;">
                     </a>
                     <p class="footer-text" style="color: #222222; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px;">
                         Sri Lanka’s premier luxury & authentic tour agency. Custom tailor-made private tours with 5-star hospitality.
