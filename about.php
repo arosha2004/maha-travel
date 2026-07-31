@@ -225,6 +225,133 @@ include_once __DIR__ . '/includes/header.php';
         height: 50px;
         background-color: rgba(0, 0, 0, 0.15); /* Darker divider */
     }
+
+    /* ── CTA Banner ── */
+    .dest-cta-section {
+        padding: 80px 24px;
+        background: linear-gradient(135deg, var(--primary) 0%, #1a3270 100%);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .dest-cta-section::before {
+        content: '';
+        position: absolute;
+        top: -100px; right: -100px;
+        width: 400px; height: 400px;
+        background: rgba(255,255,255,0.04);
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .dest-cta-section::after {
+        content: '';
+        position: absolute;
+        bottom: -60px; left: -60px;
+        width: 260px; height: 260px;
+        background: rgba(255,255,255,0.04);
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .dest-cta-bg-slider {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .dest-cta-bg-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        animation: fadeCtaSlider 20s infinite;
+    }
+    .dest-cta-bg-slide:nth-child(1) { animation-delay: 0s; background-image: url('images/hero_sri_lanka.png'); }
+    .dest-cta-bg-slide:nth-child(2) { animation-delay: 5s; background-image: url('images/mirissa_beach_whale.png'); }
+    .dest-cta-bg-slide:nth-child(3) { animation-delay: 10s; background-image: url('images/kandy_temple.png'); }
+    .dest-cta-bg-slide:nth-child(4) { animation-delay: 15s; background-image: url('images/yala_leopard_safari.png'); }
+
+    .dest-cta-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 0;
+    }
+
+    @keyframes fadeCtaSlider {
+        0%, 20% { opacity: 1; }
+        25%, 95% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .dest-cta__tag {
+        display: inline-block;
+        background: rgba(242,181,68,0.2);
+        color: #F2B544;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 999px;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+    }
+    .dest-cta__title {
+        font-family: var(--font-heading);
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+    }
+    .dest-cta__title span { color: #F2B544; font-style: italic; }
+    .dest-cta__desc {
+        color: rgba(255,255,255,0.8);
+        font-size: 1rem;
+        max-width: 520px;
+        margin: 0 auto 36px;
+        line-height: 1.7;
+        position: relative;
+        z-index: 1;
+    }
+    .dest-cta__buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .dest-cta__btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #F2B544;
+        color: #0f172a;
+        font-size: 0.95rem;
+        font-weight: 700;
+        font-family: var(--font-body);
+        padding: 14px 32px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(242,181,68,0.4);
+    }
+    .dest-cta__btn-primary:hover { background: #e0a534; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,181,68,0.5); }
+    .dest-cta__btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.3);
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: var(--font-body);
+        padding: 14px 32px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .dest-cta__btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
 </style>
 
 <!-- Hero Section with Slideshow -->
@@ -425,6 +552,34 @@ include_once __DIR__ . '/includes/header.php';
                 <p style="color: var(--gray-text); font-size: 0.95rem;">Direct contracts with 5-star hotels and luxury resorts ensuring unbeatable pricing without middleman markups.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section class="dest-cta-section">
+    <div class="dest-cta-bg-slider">
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-slide"></div>
+        <div class="dest-cta-bg-overlay"></div>
+    </div>
+    <div class="dest-cta__tag">Plan Your Journey</div>
+    <h2 class="dest-cta__title">
+        Ready to Experience<br><span>Sri Lanka</span> Your Way?
+    </h2>
+    <p class="dest-cta__desc">
+        All our tours are 100% private and fully customisable. Tell us your dream itinerary and our experts will make it happen.
+    </p>
+    <div class="dest-cta__buttons">
+        <a href="contact.php" class="dest-cta__btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Get a Free Quote
+        </a>
+        <a href="about.php" class="dest-cta__btn-secondary">
+            Learn About Us
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
     </div>
 </section>
 
