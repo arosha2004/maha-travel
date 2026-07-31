@@ -19,7 +19,7 @@ if (!isset($current_page)) {
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
-    <link rel="icon" href="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=64&q=80">
+    <link rel="icon" href="images/sigiriya_rock.png">
 </head>
 <body>
 
