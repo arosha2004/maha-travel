@@ -35,8 +35,8 @@
     --teal: #2F8F9D;
     --dark: #0f172a;
     --dark-surface: #1e293b;
-    --gray-bg: #f8fafc;
-    --gray-border: #e2e8f0;
+    --gray-bg: #F3EBE1;
+    --gray-border: #E8DCCB;
     --gray-text: #64748b;
     --light-text: #f8fafc;
     --card-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
@@ -51,8 +51,8 @@
     --highlight: #F2B544;
     --bg-white: #FFFFFF;
     --text-dark: #203050;
-    --beige-sand: #F5F7F6;
-    --footer-bg: #F5F7F6;
+    --beige-sand: #F3EBE1;
+    --footer-bg: #F3EBE1;
     --footer-text: #000000;
 }
 
@@ -120,7 +120,7 @@ img {
 }
 
 .section-title {
-    font-family: 'Reevy', 'Reey Regular', 'Reey', var(--font-heading);
+    font-family: var(--font-heading);
     font-size: 3rem;
     font-weight: 700;
     color: var(--dark);
@@ -132,6 +132,8 @@ img {
 .section-title span {
     color: var(--primary);
     position: relative;
+    font-family: 'Reey', cursive;
+    font-weight: normal;
 }
 
 .section-desc {
@@ -826,7 +828,7 @@ img {
 /* Tour Packages Section & Filters */
 .packages-section {
     padding: 100px 0;
-    background: #f1f5f9;
+    background: var(--beige-sand);
 }
 
 .filter-tabs {
@@ -868,7 +870,7 @@ img {
     width: 100%;
     padding: 40px 0 70px;
     position: relative;
-    background: #f1f5f9; /* matches .packages-section */
+    background: var(--beige-sand); /* matches .packages-section */
 }
 
 .tours-coverflow-swiper {
@@ -1184,7 +1186,7 @@ img {
 .highlight-tag {
     font-size: 0.75rem;
     padding: 4px 10px;
-    background: #f1f5f9;
+    background: var(--beige-sand);
     color: var(--dark);
     border-radius: var(--radius-sm);
     font-weight: 600;
@@ -1438,7 +1440,7 @@ img {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: #f1f5f9;
+    background: var(--beige-sand);
     border: none;
     font-size: 1.2rem;
     cursor: pointer;

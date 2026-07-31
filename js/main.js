@@ -321,22 +321,22 @@ function initHeroSlider() {
 
     const locations = [
         {
-            image: "https://images.unsplash.com/photo-1506905925275-2244247509f6?q=80&w=600&auto=format&fit=crop",
+            image: "images/carousal/Lake-Gregory-Park-1920x600-1.jpg",
             name: "Lake Gregory",
             country: "Nuwara Eliya, Sri Lanka"
         },
         {
-            image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop",
+            image: "images/carousal/ellarock.webp",
             name: "Ella Rock",
             country: "Ella, Sri Lanka"
         },
         {
-            image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=600&auto=format&fit=crop",
+            image: "images/carousal/sigiriya.jpeg",
             name: "Sigiriya Fortress",
             country: "Dambulla, Sri Lanka"
         },
         {
-            image: "https://images.unsplash.com/photo-1578637387939-43c525550085?q=80&w=600&auto=format&fit=crop",
+            image: "images/carousal/Mirissa-Sri-Lanka4.jpg",
             name: "Mirissa Beach",
             country: "Mirissa, Sri Lanka"
         }

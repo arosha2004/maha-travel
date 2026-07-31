@@ -25,12 +25,6 @@ include_once __DIR__ . '/includes/header.php';
             
             <div class="hero-buttons">
                 <a href="#packages" class="btn btn-explore">Explore Now</a>
-                <button class="btn-play">
-                    <span class="play-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    </span>
-                    <span class="play-text">Play the video</span>
-                </button>
             </div>
             
             <div class="hero-info-cards">
@@ -49,12 +43,12 @@ include_once __DIR__ . '/includes/header.php';
         <div class="hero-content-right">
             <div class="hero-image-cards">
                 <div class="image-card card-1">
-                    <img src="https://images.unsplash.com/photo-1506905925275-2244247509f6?q=80&w=600&auto=format&fit=crop" alt="Lake">
+                    <img src="images/carousal/Lake-Gregory-Park-1920x600-1.jpg" alt="Lake Gregory">
                     <div class="card-location">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                         <div>
-                            <span class="card-loc-name">The Location Name</span>
-                            <span class="card-loc-country">Country</span>
+                            <span class="card-loc-name">Lake Gregory</span>
+                            <span class="card-loc-country">Nuwara Eliya, Sri Lanka</span>
                         </div>
                     </div>
                 </div>
@@ -62,12 +56,12 @@ include_once __DIR__ . '/includes/header.php';
 
 
                 <div class="image-card card-2">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop" alt="Mountains">
+                    <img src="images/carousal/ellarock.webp" alt="Ella Rock">
                     <div class="card-location">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                         <div>
-                            <span class="card-loc-name">The Location Name</span>
-                            <span class="card-loc-country">Country</span>
+                            <span class="card-loc-name">Ella Rock</span>
+                            <span class="card-loc-country">Ella, Sri Lanka</span>
                         </div>
                     </div>
                 </div>

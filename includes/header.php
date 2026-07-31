@@ -32,9 +32,9 @@ if (!isset($current_page)) {
                 </a>
 
                 <nav class="nav-menu">
-                    <a href="destinations.php" class="nav-link <?php echo ($current_page == 'destinations') ? 'active' : ''; ?>">Destination</a>
-                    <a href="about.php" class="nav-link <?php echo ($current_page == 'about') ? 'active' : ''; ?>">Services</a>
-                    <a href="tours.php" class="nav-link <?php echo ($current_page == 'tours') ? 'active' : ''; ?>">Tour Packages</a>
+                    <a href="index.php" class="nav-link <?php echo ($current_page == 'home') ? 'active' : ''; ?>">Home</a>
+                    <a href="about.php" class="nav-link <?php echo ($current_page == 'about') ? 'active' : ''; ?>">About</a>
+                    <a href="destinations.php" class="nav-link <?php echo ($current_page == 'destinations') ? 'active' : ''; ?>">Destinations</a>
                     <a href="contact.php" class="nav-link <?php echo ($current_page == 'contact') ? 'active' : ''; ?>">Contact</a>
                 </nav>
 
