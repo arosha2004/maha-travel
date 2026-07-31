@@ -672,6 +672,7 @@ include_once __DIR__ . '/includes/header.php';
         ?>
         <div class="tc" data-category="<?php echo htmlspecialchars($tour['category_code']); ?>"
              data-tour-id="<?php echo (int)$tour['id']; ?>">
+            <a href="tour-detail.php?id=<?php echo (int)$tour['id']; ?>" style="display:block; text-decoration:none; color:inherit;">
             <div class="tc__img-wrap">
                 <img src="<?php echo htmlspecialchars($tour['image']); ?>"
                      alt="<?php echo htmlspecialchars($tour['title']); ?>"
@@ -681,6 +682,7 @@ include_once __DIR__ . '/includes/header.php';
                     $<?php echo number_format($tour['price']); ?><span> / person</span>
                 </div>
             </div>
+            </a>
             <div class="tc__body">
                 <div class="tc__meta">
                     <span class="tc__duration">
@@ -700,8 +702,8 @@ include_once __DIR__ . '/includes/header.php';
                     <?php endforeach; ?>
                 </div>
                 <div class="tc__footer">
-                    <button class="tc__btn-qv" onclick="openQuickView(<?php echo (int)$tour['id']; ?>)">Quick View</button>
-                    <a href="contact.php?tour=<?php echo urlencode($tour['title']); ?>" class="tc__btn-book">Book Now</a>
+                    <a href="tour-detail.php?id=<?php echo (int)$tour['id']; ?>" class="tc__btn-qv" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">View Details</a>
+                    <a href="contact.php?tour=<?php echo urlencode($tour['title']); ?>&id=<?php echo (int)$tour['id']; ?>" class="tc__btn-book">Book Now</a>
                 </div>
             </div>
         </div>
