@@ -20,9 +20,6 @@ include_once __DIR__ . '/includes/header.php';
     width: 100%;
     height: 60vh;
     min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     overflow: hidden;
 }
 .hero-slide {
@@ -33,27 +30,40 @@ include_once __DIR__ . '/includes/header.php';
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
     z-index: 1;
+    /* Enhanced clarity for hero images */
+    filter: contrast(1.05) saturate(1.1) brightness(1.05);
 }
 .hero-slide.active {
     opacity: 1;
     z-index: 1;
 }
 .hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     color: white;
     font-size: 3rem;
-    padding: 0 30px;
+    padding: 20px 30px;
     cursor: pointer;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     user-select: none;
     font-family: sans-serif;
     font-weight: 300;
-    z-index: 2;
+    z-index: 10;
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
 }
+.hero-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+}
+#heroPrev { left: 0; }
+#heroNext { right: 0; }
 .hero-dots {
     position: absolute;
     bottom: 25px;
     width: 100%;
     text-align: center;
+    z-index: 10;
 }
 .hero-dot {
     display: inline-block;
@@ -481,8 +491,8 @@ include_once __DIR__ . '/includes/header.php';
     <div class="hero-slide" style="background-image: url('images/hero_slider/sl_temple_1785484590947.png');"></div>
     <div class="hero-slide" style="background-image: url('images/hero_slider/sl_wildlife_1785484531553.png');"></div>
 
-    <div class="hero-arrow" id="heroPrev" style="position:relative; z-index:2;">&#10094;</div>
-    <div class="hero-dots" style="position:relative; z-index:2;">
+    <div class="hero-arrow" id="heroPrev">&#10094;</div>
+    <div class="hero-dots">
         <span class="hero-dot active" data-slide="0"></span>
         <span class="hero-dot" data-slide="1"></span>
         <span class="hero-dot" data-slide="2"></span>
@@ -490,7 +500,7 @@ include_once __DIR__ . '/includes/header.php';
         <span class="hero-dot" data-slide="4"></span>
         <span class="hero-dot" data-slide="5"></span>
     </div>
-    <div class="hero-arrow" id="heroNext" style="position:relative; z-index:2;">&#10095;</div>
+    <div class="hero-arrow" id="heroNext">&#10095;</div>
 </div>
 
 <!-- ═══════════════ ALL TOURS GRID ═══════════════ -->

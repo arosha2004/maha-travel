@@ -52,7 +52,7 @@ include_once __DIR__ . '/includes/header.php';
             <!-- Contact Form -->
             <div style="background: #fff; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--card-shadow); border: 1px solid var(--gray-border);">
                 <span class="section-tag">Send Us A Message</span>
-                <h3 class="section-title" style="font-size: 2rem; margin-bottom: 24px;">Direct <span>Concierge Inquiry</span></h3>
+                <h3 class="section-title" style="font-size: 2rem; margin-bottom: 24px;">Direct Concierge Inquiry</h3>
 
                 <form id="contact-form">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
