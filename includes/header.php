@@ -25,6 +25,8 @@ if (!isset($current_page)) {
 <body>
 
     <header class="site-header">
+        <!-- Mobile Nav Overlay -->
+        <div class="nav-overlay" id="nav-overlay"></div>
         <div class="container">
             <div class="header-wrapper">
                 <a href="index.php" class="brand-logo" style="gap: 12px; display: flex; align-items: center; text-decoration: none;">
@@ -62,30 +64,40 @@ if (!isset($current_page)) {
         </div>
     </header>
 
-    <!-- Mobile Nav Overlay -->
-    <div class="nav-overlay" id="nav-overlay"></div>
-
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var toggle = document.querySelector('.mobile-toggle');
-        var menu   = document.querySelector('.nav-menu');
+        var toggle  = document.querySelector('.mobile-toggle');
+        var menu    = document.querySelector('.nav-menu');
         var overlay = document.getElementById('nav-overlay');
 
         function openMenu() {
-            if (menu) menu.classList.add('open');
-            overlay.classList.add('active');
+            if (!menu) return;
+            menu.classList.add('open');
+            // Two-step transition: set display first, then fade in on next frame
+            overlay.style.display = 'block';
+            requestAnimationFrame(function() {
+                overlay.classList.add('active');
+            });
             document.body.style.overflow = 'hidden';
         }
 
         function closeMenu() {
+            if (!menu) return;
             menu.classList.remove('open');
             overlay.classList.remove('active');
+            // Hide overlay after fade-out transition completes
+            overlay.addEventListener('transitionend', function handler() {
+                if (!overlay.classList.contains('active')) {
+                    overlay.style.display = 'none';
+                }
+                overlay.removeEventListener('transitionend', handler);
+            });
             document.body.style.overflow = '';
         }
 
         if (toggle) {
             toggle.addEventListener('click', function() {
-                if (menu.classList.contains('open')) {
+                if (menu && menu.classList.contains('open')) {
                     closeMenu();
                 } else {
                     openMenu();

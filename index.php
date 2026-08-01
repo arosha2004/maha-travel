@@ -21,7 +21,7 @@ include_once __DIR__ . '/includes/header.php';
             
             <h1 class="hero-title">The Journey Beyond<br>Your Imaginary</h1>
             
-            <p class="hero-subtitle">Discover thousands of beautiful places around the world with wonderful experiences you can imagine.</p>
+            <p class="hero-subtitle">Discover thousands of beautiful places around Sri Lanka with wonderful experiences you can imagine.</p>
             
             <div class="hero-buttons">
                 <a href="#packages" class="btn btn-explore">Explore Now</a>
